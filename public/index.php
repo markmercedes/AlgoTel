@@ -14,9 +14,9 @@ if ($_SERVER['SCRIPT_NAME'] != '/index.php' && is_file($_SERVER['DOCUMENT_ROOT']
 }
 
 $_SERVER['SCRIPT_NAME'] = '/index.php';
-// if needed, fix also 'PATH_INFO' and 'PHP_SELF' variables here...
 
-require realpath(__DIR__ . '/../loader.php');
+require implode(DIRECTORY_SEPARATOR, ['..', 'src', 'Utils', 'functions.php']);
+require implode(DIRECTORY_SEPARATOR, ['..', 'loader.php']);
 spl_autoload_register('autoloadStrategy');
 
 Utils\DotEnv::load();
