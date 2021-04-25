@@ -8,11 +8,7 @@ class Connection
 
   static public function instance()
   {
-    if (!self::$activeConnection) {
-      self::connect();
-    }
-
-    return self::$activeConnection;
+    return self::$activeConnection ??= self::connect();
   }
 
   static private function connect()
@@ -27,7 +23,7 @@ class Connection
       $conn = new \PDO("mysql:host=$servername;dbname=$dbname;port=$dbport", $username, $password);
       // set the PDO error mode to exception
       $conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-      self::$activeConnection = $conn;
+      return self::$activeConnection = $conn;
     } catch (\PDOException $e) {
       echo "Connection failed: " . $e->getMessage();
     }
