@@ -10,10 +10,11 @@ class TextAttribute extends Base
   {
     $form = $options['form'];
     $placeholder = Arr::get($options, 'placeholder');
+    $id = $form->elementId($this->attribute);
 ?>
     <div class="mb-3">
       <label for='<?= $id ?>' class="form-label"><?= $this->label ?></label>
-      <textarea class="form-control" id='<?= $form->elementId($this->attribute) ?>' name='<?= $this->attribute ?>' placeholder='<?= $placeholder ?>' form='<?= $form->formId() ?>'><?= htmlspecialchars($this->model->{$this->attribute}) ?></textarea>
+      <textarea class="form-control" id='<?= $id ?>' name='<?= $this->attribute ?>' placeholder='<?= $placeholder ?>' form='<?= $form->formId() ?>'><?= htmlspecialchars($this->model->{$this->attribute}) ?></textarea>
     </div>
 <?php
   }
