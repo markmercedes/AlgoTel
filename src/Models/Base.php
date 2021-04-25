@@ -4,6 +4,29 @@ namespace Models;
 
 use Db\Connection;
 use Db\TableMetadata;
+use PDOException;
+
+class ModelError
+{
+  public $errorType;
+  public $attribute;
+  public $value;
+
+  function __construct($attribute, $errorType, $value = null)
+  {
+    $this->attribute = $attribute;
+    $this->errorType = $errorType;
+    $this->value = $value;
+  }
+
+  function getMessage($label)
+  {
+    return match ($this->errorType) {
+      'UNIQUE_KEY' => "valor '{$this->value}' es duplicado para '{$label}', ya existe otro record con ese valor",
+      'REQUIRED' => "'{$label}' require un valor",
+    };
+  }
+}
 
 class Base
 {
@@ -12,6 +35,8 @@ class Base
   static protected $properties = [];
   protected $attributes = [];
   protected $initialAttributes = [];
+  protected $validAttributes = [];
+  protected $errors = [];
   static protected $tableMetadata;
 
   static protected function loadTableMetadata()
@@ -25,11 +50,24 @@ class Base
     return static::$tableMetadata;
   }
 
+  static function tableMetadata()
+  {
+    return static::$tableMetadata ??= static::loadTableMetadata();
+  }
+
   function __construct($attributes = [])
   {
-    $this->attributes = $attributes;
-    $this->initialAttributes = $attributes;
-    static::loadTableMetadata();
+    $this->attributes = count($attributes) == 0 ? $this->emptyAttributes() : $attributes;
+    $this->initialAttributes = $this->attributes;
+    $this->validAttributes = array_keys($this->attributes);
+  }
+
+  private function emptyAttributes()
+  {
+    return array_reduce(static::tableMetadata()->properties(), function ($attributes, $property) {
+      $attributes[$property] = null;
+      return $attributes;
+    }, []);
   }
 
   public function isNewRecord()
@@ -37,16 +75,17 @@ class Base
     return !count($this->attributes) || !(bool)$this->attributes[static::$primaryKey];
   }
 
-  public function save()
+  public function setAttributes($attributes)
   {
-    $changes = [];
-
-    foreach (static::$properties as $property) {
-      if ($this->attributes[$property] != $this->initialAttributes[$property]) {
-        $changes[$property] = $this->attributes[$property];
+    foreach ($attributes as $attribute => $value) {
+      if (in_array($attribute, $this->validAttributes)) {
+        $this->{$attribute} = $value;
       }
     }
+  }
 
+  protected function update($changes)
+  {
     if (count($changes)) {
       $tableName = static::$tableName;
       $primaryKey = static::$primaryKey;
@@ -64,8 +103,107 @@ class Base
       $stmt = Connection::instance()->prepare($sql);
       $stmt->execute($changes);
     }
+  }
+
+  protected function insert($changes)
+  {
+    $columns = array_keys($changes);
+    $values = array_map(function ($column) {
+      return ':' . $column;
+    }, $columns);
+
+
+    $sql = 'INSERT INTO ' . static::$tableName . ' (' . implode(', ', $columns) . ') values (' . implode(', ', $values)  . ')';
+    $stmt = Connection::instance()->prepare($sql);
+    $stmt->execute($changes);
+
+    $newId = Connection::instance()->lastInsertId();
+
+    $this->{static::$primaryKey} = $newId;
+  }
+
+  function cleanAttributeName($value)
+  {
+    return preg_replace('/[^a-zA-Z0-9\_]/', '', $value);
+  }
+
+  function extractDuplicateEntryError($message)
+  {
+    if (str_contains($message, 'Integrity constraint violation') && str_contains($message, 'Duplicate entry')) {
+      $matches = [];
+      preg_match_all("/'.+?'/", $message, $matches);
+
+      $values = $matches[0];
+      $value = str_replace("'", '', $values[0]);
+      $attribute = explode('.', $values[1])[1];
+
+      $this->addError('UNIQUE_KEY', $attribute, $value);
+
+      return true;
+    }
+  }
+
+  function extractRequiredFieldWithoutDefaultValueError($message)
+  {
+    if (str_contains($message, "doesn't have a default value")) {
+      $matches = [];
+      preg_match("/'.+?'/", $message, $matches);
+
+      $attribute = $matches[0];
+
+      $this->addError('REQUIRED', $attribute);
+
+      return true;
+    }
+  }
+
+  function addError($errorType, $attribute, $value = null)
+  {
+    $attribute = $this->cleanAttributeName($attribute);
+
+    $this->errors[$attribute] ??= [];
+    $this->errors[$attribute][] = new ModelError($attribute, $errorType, $value);
+  }
+
+  function errors()
+  {
+    $errors = [];
+
+    foreach ($this->errors as $attribute => $attributeErrors) {
+      foreach ($attributeErrors as $error) {
+        $errors[] = $error;
+      }
+    }
+
+    return $errors;
+  }
+
+  public function save()
+  {
+    $changes = [];
+
+    foreach (static::$properties as $property) {
+      if ($this->attributes[$property] != $this->initialAttributes[$property]) {
+        $changes[$property] = $this->attributes[$property];
+      }
+    }
+
+    try {
+      if ($this->isNewRecord()) {
+        $this->insert($changes);
+      } else {
+        $this->update($changes);
+      }
+    } catch (PDOException $e) {
+      $this->extractDuplicateEntryError($e->getMessage());
+      $this->extractRequiredFieldWithoutDefaultValueError($e->getMessage());
+
+      return false;
+    }
 
     $this->initialAttributes = $this->attributes;
+
+    return true;
   }
 
 
@@ -139,7 +277,7 @@ class Base
       throw new RecordNotFound("Couldn't find record with $primaryKey=$id");
     }
 
-    return new User($record);
+    return new static($record);
   }
 }
 
