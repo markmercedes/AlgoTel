@@ -7,9 +7,14 @@ use Utils\Arr;
 class Base
 {
   const MODEL_CLASS = '';
+  const RESOURCE_LABEL = '';
+  const RESOURCES_LABEL = '';
   const EDITABLE_ATTRIBUTES = [];
   const LISTABLE_ATTRIBUTES = [];
+  const TOP_LIST_ACTIONS = ['new', 'search'];
   const LISTABLE_ACTIONS = ['edit', 'destroy'];
+  const EDITABLE_ACTIONS = ['save', 'cancel'];
+  const CREATEABLE_ACTIONS = ['cancel'];
   const ATTRIBUTE_TYPES = [];
 
 
@@ -32,6 +37,16 @@ class Base
     return $this->controller->currentRoute();
   }
 
+  function resourceLabel()
+  {
+    return static::RESOURCE_LABEL;
+  }
+
+  function resourcesLabel()
+  {
+    return static::RESOURCES_LABEL;
+  }
+
   function listableAttributes()
   {
     return static::LISTABLE_ATTRIBUTES;
@@ -40,6 +55,16 @@ class Base
   function editableAttributes()
   {
     return static::EDITABLE_ATTRIBUTES;
+  }
+
+  function formActions($model)
+  {
+    return $model->isNewRecord() ? static::CREATEABLE_ACTIONS : static::EDITABLE_ACTIONS;
+  }
+
+  function topListActions()
+  {
+    return static::TOP_LIST_ACTIONS;
   }
 
   function listableActions()

@@ -16,7 +16,7 @@ class AdminBaseController extends \Controllers\Base
 
   function index()
   {
-    contentFor('title', 'Room Types');
+    contentFor('title', $this->resourceManager()->resourcesLabel());
 
     parent::index();
   }
@@ -44,6 +44,8 @@ class AdminBaseController extends \Controllers\Base
 
   public function new()
   {
+    contentFor('title', 'Crear ' . $this->resourceManager()->resourceLabel());
+
     $this->render(
       'new',
       []
@@ -52,6 +54,8 @@ class AdminBaseController extends \Controllers\Base
 
   public function edit()
   {
+    contentFor('title', 'Editar ' . $this->resourceManager()->resourceLabel());
+
     $this->render(
       'edit',
       []
@@ -69,10 +73,7 @@ class AdminBaseController extends \Controllers\Base
       header("Location: $resourceUrl");
       exit();
     } else {
-      $this->render(
-        'edit',
-        []
-      );
+      $this->edit();
     }
   }
 
@@ -86,10 +87,7 @@ class AdminBaseController extends \Controllers\Base
       header("Location: $resourceUrl");
       exit();
     } else {
-      $this->render(
-        'new',
-        []
-      );
+      $this->new();
     }
   }
 

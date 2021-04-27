@@ -1,14 +1,12 @@
 <div class="card">
   <div class="card-header">
-    <h1 class="h2"><?= yieldContent('title') ?></h1>
+    <h1 class="h2"><?= yieldContent('title', $this->resourceManager()->resourcesLabel()) ?></h1>
   </div>
   <div class="card-body">
     <div class="action-toolbar pb-3">
-      <?= $this->resourceManager()->renderModelAction(null, 'new', 'index') ?>
-
-      <a class="btn btn-warning search-panel-displayer" href="#"><i class="fa fa-search"></i>
-        Search
-      </a>
+      <?php foreach ($this->resourceManager()->topListActions() as $action) : ?>
+        <?= $this->resourceManager()->renderModelAction(null, $action, 'index') ?>
+      <?php endforeach; ?>
     </div>
     <table class="table table-hover">
       <thead>
