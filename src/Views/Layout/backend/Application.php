@@ -13,6 +13,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <meta name="theme-color" content="#7952b3">
+  <title> <?= yieldContent('title') ?> </title>
 </head>
 
 <body>
@@ -27,19 +28,9 @@
         <div class="position-sticky pt-3">
           <ul class="nav flex-column">
             <li class="nav-item"><a class="nav-link active" aria-current="page" href="#"><span data-feather="home"></span>Dashboard </a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Home', 'index']) ?>"><span data-feather="file"></span>Orders </a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Users'], ['id' => 1]) ?>"><span data-feather="shopping-cart"></span>Rooms </a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Users'], ['id' => 1]) ?>"><span data-feather="shopping-cart"></span>Room Types </a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Users'], ['id' => 1]) ?>"><span data-feather="shopping-cart"></span>Room Capacities </a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Users'], ['id' => 1]) ?>"><span data-feather="shopping-cart"></span>Bookings </a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Users'], ['id' => 1]) ?>"><span data-feather="shopping-cart"></span>Pricing plans </a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Users'], ['id' => 1]) ?>"><span data-feather="shopping-cart"></span>Additional Packages </a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Users'], ['id' => 1]) ?>"><span data-feather="shopping-cart"></span>Bookings </a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Users'], ['id' => 1]) ?>"><span data-feather="shopping-cart"></span>Bookings </a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Users'], ['id' => 1]) ?>"><span data-feather="shopping-cart"></span>Bookings </a></li>
-            <li class="nav-item"><a class="nav-link" href="#"><span data-feather="users"></span>Customers </a></li>
-            <li class="nav-item"><a class="nav-link" href="#"><span data-feather="bar-chart-2"></span>Reports </a></li>
-            <li class="nav-item"><a class="nav-link" href="#"><span data-feather="layers"></span>Integrations </a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Rooms']) ?>"><span data-feather="shopping-cart"></span>Rooms </a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'RoomTypes']) ?>"><span data-feather="shopping-cart"></span>Room Types </a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'RoomCapacities']) ?>"><span data-feather="shopping-cart"></span>Room Capacities </a></li>
           </ul>
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"><span>Saved reports</span><a class="link-secondary" href="#" aria-label="Add a new report"><span data-feather="plus-circle"></span></a></h6>
           <ul class="nav flex-column mb-2">
