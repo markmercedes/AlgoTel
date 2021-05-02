@@ -15,4 +15,14 @@ class Base
     $this->attrMeta = $attrMeta;
     $this->label = Arr::get($attrMeta, 'label', $attribute);
   }
+
+  static function serialize($value)
+  {
+    return $value;
+  }
+
+  static function unserialize($value)
+  {
+    return $value;
+  }
 }

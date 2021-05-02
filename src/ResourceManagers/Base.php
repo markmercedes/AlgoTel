@@ -14,7 +14,7 @@ class Base
   const TOP_LIST_ACTIONS = ['new', 'search'];
   const LISTABLE_ACTIONS = ['edit', 'destroy'];
   const EDITABLE_ACTIONS = ['save', 'cancel'];
-  const CREATEABLE_ACTIONS = ['cancel'];
+  const CREATEABLE_ACTIONS = ['save', 'cancel'];
   const ATTRIBUTE_TYPES = [];
 
 
@@ -86,6 +86,16 @@ class Base
     return $modelClass::find($id);
   }
 
+  function parseInputFor($attribute, $value)
+  {
+    $attrMeta = static::ATTRIBUTE_TYPES[$attribute] ?? [];
+
+    $type = Arr::get($attrMeta, 'type', 'String');
+
+    $attrClass = '\\ResourceManagers\\Attributes\\' . $type . 'Attribute';
+
+    return forward_static_call(array($attrClass, 'serialize'), $value);
+  }
 
   function fieldFor($model, $attribute)
   {
