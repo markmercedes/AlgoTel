@@ -6,30 +6,12 @@ use Db\Connection;
 use Db\TableMetadata;
 use PDOException;
 
-class ModelError
-{
-  public $errorType;
-  public $attribute;
-  public $value;
-
-  function __construct($attribute, $errorType, $value = null)
-  {
-    $this->attribute = $attribute;
-    $this->errorType = $errorType;
-    $this->value = $value;
-  }
-
-  function getMessage($label)
-  {
-    return match ($this->errorType) {
-      'UNIQUE_KEY' => "valor '{$this->value}' es duplicado para '{$label}', ya existe otro record con ese valor",
-      'REQUIRED' => "'{$label}' require un valor",
-    };
-  }
-}
-
 class Base
 {
+  const FIELD_TYPES = [];
+
+  use FieldTypeSupport;
+
   static protected $tableName;
   static protected $primaryKey;
   static protected $properties = [];
@@ -57,9 +39,10 @@ class Base
 
   function __construct($attributes = [])
   {
-    $this->attributes = count($attributes) == 0 ? $this->emptyAttributes() : $attributes;
+    $this->validAttributes = array_keys($this->emptyAttributes());
+    $this->attributes = [];
+    $this->setAttributes(count($attributes) == 0 ? $this->emptyAttributes() : $attributes);
     $this->initialAttributes = $this->attributes;
-    $this->validAttributes = array_keys($this->attributes);
   }
 
   private function emptyAttributes()
@@ -79,7 +62,7 @@ class Base
   {
     foreach ($attributes as $attribute => $value) {
       if (in_array($attribute, $this->validAttributes)) {
-        $this->{$attribute} = $value;
+        $this->{$attribute} = $this->readAttribute($attribute, $value);
       }
     }
   }
@@ -184,7 +167,7 @@ class Base
 
     foreach (static::$properties as $property) {
       if ($this->attributes[$property] != $this->initialAttributes[$property]) {
-        $changes[$property] = $this->attributes[$property];
+        $changes[$property] = $this->writeAttribute($property, $this->attributes[$property]);
       }
     }
 
