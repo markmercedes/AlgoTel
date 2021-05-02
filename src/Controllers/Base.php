@@ -91,10 +91,14 @@ class Base
     $lookups = $this->collectLookups();
     $mainContent = null;
 
-    foreach ($lookups as $lookup) {
-      if (file_exists(App::viewsPath($lookup, $_viewName))) {
-        $mainContent = App::viewsPath($lookup, $_viewName);
-        break;
+    if ($viewName[0] == '/') {
+      $mainContent = App::viewsPath(ltrim($viewName, '/'));
+    } else {
+      foreach ($lookups as $lookup) {
+        if (file_exists(App::viewsPath($lookup, $_viewName))) {
+          $mainContent = App::viewsPath($lookup, $_viewName);
+          break;
+        }
       }
     }
 
