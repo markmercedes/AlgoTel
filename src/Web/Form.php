@@ -56,7 +56,7 @@ class Form
   function openTag()
   {
 ?>
-    <form method="post" name='<?= $this->formName() ?>' id='<?= $this->formId() ?>' action='<?= $this->url ?>' <?= $this->htmlAttributes() ?>>
+    <form method="post" enctype="multipart/form-data" name='<?= $this->formName() ?>' id='<?= $this->formId() ?>' action='<?= $this->url ?>' <?= $this->htmlAttributes() ?>>
     <?php
   }
 

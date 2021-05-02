@@ -62,9 +62,25 @@ class AdminBaseController extends \Controllers\Base
     );
   }
 
+  public function params()
+  {
+    $params = [];
+
+    $attributes = $this->resourceManager()->editableAttributes();
+    $inputParams = Params::post();
+
+    foreach ($inputParams as $param => $value) {
+      if (in_array($param, $attributes)) {
+        $params[$param] = $this->resourceManager()->parseInputFor($param, $value);
+      }
+    }
+
+    return $params;
+  }
+
   public function update()
   {
-    $this->model()->setAttributes(Params::post());
+    $this->model()->setAttributes($this->params());
     $this->model()->save();
 
     if ($this->model()->save()) {
@@ -79,7 +95,7 @@ class AdminBaseController extends \Controllers\Base
 
   public function create()
   {
-    $this->model()->setAttributes(Params::post());
+    $this->model()->setAttributes($this->params());
 
     if ($this->model()->save()) {
       $resourceUrl = linkTo([$this->currentRoute(), 'edit'], ['id' => $this->model()->id]);

@@ -27,14 +27,39 @@ class Params
     return $default;
   }
 
-  static function post($key = null, $default = null)
+  static function files()
   {
-    if (!$key) {
-      return $_POST;
+    $files = [];
+    $fieldsForFiles = array_keys($_FILES);
+
+    foreach ($fieldsForFiles as $field) {
+      $files[$field] = [];
+
+      foreach ($_FILES[$field]['name'] as $index => $file) {
+        if (!empty($file)) {
+          $files[$field][] = [
+            'name' => $file,
+            'type' => $_FILES[$field]['type'][$index],
+            'tmp_name' => $_FILES[$field]['tmp_name'][$index],
+          ];
+        }
+      }
     }
 
-    if (isset($_POST[$key])) {
-      return $_POST[$key];
+    return $files;
+  }
+
+
+  static function post($key = null, $default = null)
+  {
+    $post = array_merge($_POST, static::files());
+
+    if (!$key) {
+      return $post;
+    }
+
+    if (isset($post[$key])) {
+      return $post[$key];
     }
 
     return $default;
