@@ -1,5 +1,7 @@
 <?php
 
+const DS = DIRECTORY_SEPARATOR;
+
 $GLOBALS['CONTENTS'] = [];
 
 function contentFor($key, $value)
@@ -38,4 +40,20 @@ function linkTo($path = [], $params = [])
     $url .= '?' . $queryParams;
   }
   return '/' . $url;
+}
+
+function uploadsPath()
+{
+  return implode(DS, [appPath(), 'public', 'uploads']);
+}
+
+function uploadsUrl($path)
+{
+  return '/uploads/'  . $path;
+}
+
+
+function appPath()
+{
+  return dirname(realpath('.'));
 }
