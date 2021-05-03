@@ -239,7 +239,7 @@ class Base
     $results = [];
 
     foreach ($stmt as $row) {
-      $results[] = new User($row);
+      $results[] = new static($row);
     }
 
     return $results;

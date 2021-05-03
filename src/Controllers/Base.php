@@ -128,7 +128,7 @@ class Base
 
   public static function currentControllerNamespace()
   {
-    if (Params::pathSize() >= 3) {
+    if (Params::pathSize() >= 3 && Params::pathPart(1) == 'Admin') {
       return Params::pathPart(1);
     }
   }

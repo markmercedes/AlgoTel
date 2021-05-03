@@ -6,13 +6,47 @@
   background-position: center;
 }
 
+.hover-color {
+  background-color: #0d6a9c;
+}
+
+.color-theme-primary {
+  color: #118acb;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #118acb;
+  border-color: #118acb;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #0d6a9c;
+  border-color: #118acb;
+}
+
+.call-to-action-btn {
+  box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.31);
+  -webkit-box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.31);
+  -moz-box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.31);
+}
+
+.table-theme-primary {
+  border-color: #118acb;
+}
+
+.thin-list {
+  border-bottom: 1px solid #eee;
+}
+
 .logo-title a {
   text-decoration: none;
-  color: #19191a;
+  color: #118acb;
 }
 
 .logo-title a:hover {
-  color: #5c5c61;
+  color: #118acb;
 }
 
 .amenities-list div {
@@ -42,7 +76,7 @@ h4,
 h5,
 h6 {
   margin: 0;
-  color: #111;
+  color: #118acb;
   font-weight: 400;
   font-family: lora, serif;
 }
@@ -98,7 +132,7 @@ ol {
 }
 .section-title span {
   font-size: 14px;
-  color: #dfa974;
+  color: #118acb;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -149,7 +183,7 @@ ol {
   bottom: -5px;
   width: 100%;
   height: 2px;
-  background: #dfa974;
+  background: #118acb;
   content: "";
 }
 #preloder {
@@ -302,7 +336,7 @@ ol {
   display: none;
 }
 .top-nav .tn-left li i {
-  color: #dfa974;
+  color: #118acb;
   margin-right: 4px;
 }
 .top-nav .tn-right {
@@ -324,7 +358,7 @@ ol {
   font-size: 13px;
   font-weight: 700;
   padding: 16px 28px 15px;
-  background: #dfa974;
+  background: #118acb;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -384,7 +418,7 @@ ol {
   transition: all 0.3s;
 }
 .top-nav .tn-right .language-option .flag-dropdown ul li a:hover {
-  color: #dfa974;
+  color: #118acb;
 }
 .menu-item {
   position: relative;
@@ -438,7 +472,7 @@ ol {
   top: 52px;
   width: 100%;
   height: 2px;
-  background: #dfa974;
+  background: #118acb;
   content: "";
   opacity: 0;
   -webkit-transition: all 0.3s;
@@ -475,7 +509,7 @@ ol {
   transition: all 0.3s;
 }
 .menu-item .nav-menu .mainmenu li .dropdown li a:hover {
-  color: #dfa974;
+  color: #118acb;
 }
 .menu-item .nav-menu .mainmenu li .dropdown li a:after {
   display: none;
@@ -554,7 +588,7 @@ ol {
   padding-left: 20px;
 }
 .booking-form form .check-date i {
-  color: #dfa974;
+  color: #118acb;
   position: absolute;
   right: 18px;
   bottom: 17px;
@@ -579,8 +613,8 @@ ol {
   float: none;
 }
 .booking-form form .select-option .nice-select:after {
-  border-bottom: 2px solid #dfa974;
-  border-right: 2px solid #dfa974;
+  border-bottom: 2px solid #118acb;
+  border-right: 2px solid #118acb;
   height: 10px;
   margin-top: 0;
   right: 20px;
@@ -597,19 +631,7 @@ ol {
   margin-top: 0;
   width: 100%;
 }
-.booking-form form button {
-  display: block;
-  font-size: 14px;
-  text-transform: uppercase;
-  border: 1px solid #dfa974;
-  border-radius: 2px;
-  color: #dfa974;
-  font-weight: 500;
-  background: 0 0;
-  width: 100%;
-  height: 46px;
-  margin-top: 30px;
-}
+
 .hero-slider {
   position: absolute;
   width: 100%;
@@ -684,7 +706,7 @@ ol {
   transition: all 0.3s;
 }
 .service-item:hover {
-  background: #dfa974;
+  background: #118acb;
 }
 .service-item:hover i {
   color: #fff;
@@ -697,7 +719,7 @@ ol {
 }
 .service-item i {
   display: inline-block;
-  color: #dfa974;
+  color: #118acb;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
@@ -748,7 +770,7 @@ ol {
   margin-bottom: 15px;
 }
 .hp-room-items .hp-room-item .hr-text h2 {
-  color: #dfa974;
+  color: #118acb;
   font-weight: 700;
   margin-bottom: 50px;
   -webkit-transition: all 0.2s;
@@ -858,9 +880,14 @@ ol {
 .footer-section .footer-text .ft-about .logo a {
   display: inline-block;
 }
-.footer-section .footer-text .ft-about p {
+.footer-section .footer-text .ft-about p,
+.footer-section a {
   color: #aaaab3;
   margin-bottom: 20px;
+  text-decoration: none;
+}
+a {
+  text-decoration: none;
 }
 .footer-section .footer-text .ft-about .fa-social a {
   display: inline-block;
@@ -878,15 +905,15 @@ ol {
   margin-right: 7px;
 }
 .footer-section .footer-text .ft-about .fa-social a:hover {
-  background: #dfa974;
-  border-color: #dfa974;
+  background: #118acb;
+  border-color: #118acb;
 }
 .footer-section .footer-text .ft-contact {
   margin-bottom: 30px;
 }
 .footer-section .footer-text .ft-contact h6 {
   font-size: 14px;
-  color: #dfa974;
+  color: #118acb;
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 3px;
@@ -901,7 +928,7 @@ ol {
 }
 .footer-section .footer-text .ft-newslatter h6 {
   font-size: 14px;
-  color: #dfa974;
+  color: #118acb;
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 3px;
@@ -930,7 +957,7 @@ ol {
   right: 0;
   top: 0;
   font-size: 16px;
-  background: #dfa974;
+  background: #118acb;
   color: #fff;
   padding: 0 16px;
   height: 50px;
@@ -1019,7 +1046,7 @@ ol {
   line-height: 42px;
 }
 .about-page-text .ap-services li i {
-  color: #dfa974;
+  color: #118acb;
   margin-right: 5px;
 }
 .about-page-services .ap-service-item {
@@ -1136,7 +1163,7 @@ ol {
   margin-bottom: 17px;
 }
 .room-item .ri-text h3 {
-  color: #dfa974;
+  color: #118acb;
   font-weight: 700;
   margin-bottom: 14px;
 }
@@ -1180,7 +1207,7 @@ ol {
   margin-right: 0;
 }
 .room-pagination a:hover {
-  background: #dfa974;
+  background: #118acb;
   color: #fff;
 }
 .room-details-section {
@@ -1219,11 +1246,11 @@ ol {
   font-size: 13px;
   text-transform: uppercase;
   font-weight: 700;
-  background: #dfa974;
+  background: #118acb;
   padding: 14px 28px 13px;
 }
 .room-details-item .rd-text h2 {
-  color: #dfa974;
+  color: #118acb;
   font-weight: 700;
   margin-bottom: 25px;
 }
@@ -1289,7 +1316,7 @@ ol {
 }
 .rd-reviews .review-item .ri-text span {
   font-size: 12px;
-  color: #dfa974;
+  color: #118acb;
   text-transform: uppercase;
   letter-spacing: 3px;
 }
@@ -1386,7 +1413,7 @@ ol {
   text-transform: uppercase;
   color: #fff;
   letter-spacing: 2px;
-  background: #dfa974;
+  background: #118acb;
   border: none;
   padding: 14px 34px 13px;
   display: inline-block;
@@ -1420,7 +1447,7 @@ ol {
   padding-left: 20px;
 }
 .room-booking form .check-date i {
-  color: #dfa974;
+  color: #118acb;
   position: absolute;
   right: 18px;
   bottom: 17px;
@@ -1445,8 +1472,8 @@ ol {
   float: none;
 }
 .room-booking form .select-option .nice-select:after {
-  border-bottom: 2px solid #dfa974;
-  border-right: 2px solid #dfa974;
+  border-bottom: 2px solid #118acb;
+  border-right: 2px solid #118acb;
   height: 10px;
   margin-top: 0;
   right: 20px;
@@ -1467,9 +1494,9 @@ ol {
   display: block;
   font-size: 14px;
   text-transform: uppercase;
-  border: 1px solid #dfa974;
+  border: 1px solid #118acb;
   border-radius: 2px;
-  color: #dfa974;
+  color: #118acb;
   font-weight: 500;
   background: 0 0;
   width: 100%;
@@ -1503,7 +1530,7 @@ ol {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background: #dfa974;
+  background: #118acb;
   padding: 3px 10px;
   border-radius: 2px;
 }
@@ -1537,7 +1564,7 @@ ol {
 .bd-hero-text span {
   font-size: 12px;
   color: #fff;
-  background: #dfa974;
+  background: #118acb;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -1555,7 +1582,7 @@ ol {
 .bd-hero-text ul li {
   list-style: none;
   font-size: 14px;
-  color: #dfa974;
+  color: #118acb;
   margin-right: 35px;
   display: inline-block;
 }
@@ -1632,7 +1659,7 @@ ol {
 }
 .blog-details-text .tag-share .tags a:hover {
   color: #fff;
-  background: #dfa974;
+  background: #118acb;
 }
 .blog-details-text .tag-share .social-share {
   float: right;
@@ -1710,7 +1737,7 @@ ol {
 }
 .blog-details-text .comment-option .single-comment-item .sc-text span {
   font-size: 12px;
-  color: #dfa974;
+  color: #118acb;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -1740,9 +1767,9 @@ ol {
   margin-right: 10px;
 }
 .blog-details-text .comment-option .single-comment-item .sc-text a:hover {
-  background: #dfa974;
+  background: #118acb;
   color: #fff;
-  border-color: #dfa974;
+  border-color: #118acb;
 }
 .blog-details-text .leave-comment h4 {
   color: #19191a;
@@ -1762,7 +1789,7 @@ ol {
   transition: all 0.3s;
 }
 .blog-details-text .leave-comment .comment-form input:focus {
-  border-color: #dfa974;
+  border-color: #118acb;
 }
 .blog-details-text .leave-comment .comment-form textarea {
   width: 100%;
@@ -1780,7 +1807,7 @@ ol {
   padding-top: 12px;
 }
 .blog-details-text .leave-comment .comment-form textarea:focus {
-  border-color: #dfa974;
+  border-color: #118acb;
 }
 .blog-details-text .leave-comment .comment-form button {
   font-size: 13px;
@@ -1788,7 +1815,7 @@ ol {
   text-transform: uppercase;
   color: #fff;
   letter-spacing: 2px;
-  background: #dfa974;
+  background: #118acb;
   border: none;
   padding: 14px 42px 13px;
   display: inline-block;
@@ -1882,7 +1909,7 @@ ol {
   text-transform: uppercase;
   color: #fff;
   letter-spacing: 2px;
-  background: #dfa974;
+  background: #118acb;
   border: none;
   padding: 14px 34px 13px;
   display: inline-block;
@@ -2082,14 +2109,14 @@ ol {
     ul
     li
     a:hover {
-    color: #dfa974;
+    color: #118acb;
   }
   .offcanvas-menu-wrapper .header-configure-area .bk-btn {
     display: inline-block;
     font-size: 13px;
     font-weight: 700;
     padding: 16px 28px 15px;
-    background: #dfa974;
+    background: #118acb;
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -2130,7 +2157,7 @@ ol {
   .offcanvas-menu-wrapper .slicknav_menu .slicknav_nav ul li a:hover {
     border-radius: 0;
     background: 0 0;
-    color: #dfa974;
+    color: #118acb;
   }
   .offcanvas-menu-wrapper .slicknav_menu .slicknav_nav .slicknav_row a {
     border-bottom: 0;
@@ -2146,14 +2173,14 @@ ol {
     transition: all 0.3s;
   }
   .offcanvas-menu-wrapper .slicknav_menu .slicknav_nav .slicknav_row:hover a {
-    color: #dfa974;
+    color: #118acb;
   }
   .offcanvas-menu-wrapper
     .slicknav_menu
     .slicknav_nav
     .slicknav_row:hover
     span {
-    color: #dfa974;
+    color: #118acb;
   }
   .offcanvas-menu-wrapper .top-social {
     display: inline-block;
@@ -2177,7 +2204,7 @@ ol {
     line-height: 28px;
   }
   .offcanvas-menu-wrapper .top-widget li i {
-    color: #dfa974;
+    color: #118acb;
     margin-right: 4px;
   }
   .offcanvas-menu-wrapper.show-offcanvas-menu-wrapper {

@@ -1,4 +1,4 @@
-<div class="card col-lg-6 col-md-12">
+<div class="card col-lg-10 col-md-12">
   <div class="card-header">
     <h1 class="h2"><?= yieldContent('title', $this->resourceManager()->resourceLabel()) ?></h1>
   </div>

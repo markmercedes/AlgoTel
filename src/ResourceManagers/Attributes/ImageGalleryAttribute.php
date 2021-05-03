@@ -31,7 +31,7 @@ class ImageGalleryAttribute extends Base
         <div class="mb-3 row">
           <?php foreach ($entries as $entry) : ?>
             <div class="col upload-preview">
-              <img class="img-t humbnail" />
+              <img class="img-thumbnail" />
               <input class="preview-file-on-upload" type="file" name='<?= "{$this->attribute}[$entry]" ?>' />
             </div>
           <?php endforeach; ?>

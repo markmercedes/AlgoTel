@@ -6,60 +6,29 @@
           <div class="ft-about">
             <div class="logo">
               <a href="#">
-                <img src="img/footer-logo.png" alt="">
+                <img src="https://www.edenroccapcana.com/wp-content/uploads/2021/02/logo_eden_roc_cap_cana_relais_chateaux_full_white2020.png" alt="">
               </a>
-            </div>
-            <p>We inspire and reach millions of travelers<br> across 90 local websites</p>
-            <div class="fa-social">
-              <a href="#"><i class="fa fa-facebook"></i></a>
-              <a href="#"><i class="fa fa-twitter"></i></a>
-              <a href="#"><i class="fa fa-tripadvisor"></i></a>
-              <a href="#"><i class="fa fa-instagram"></i></a>
-              <a href="#"><i class="fa fa-youtube-play"></i></a>
             </div>
           </div>
         </div>
         <div class="col-lg-3 offset-lg-1">
           <div class="ft-contact">
-            <h6>Contact Us</h6>
+            <h6>Ubicacion</h6>
             <ul>
-              <li>(12) 345 67890</li>
-              <li>info.colorlib@gmail.com</li>
-              <li>856 Cordia Extension Apt. 356, Lake, United State</li>
+              <li>Eden Roc Cap Cana <br />
+                Cap Cana, Juanillo, Punta Cana, Provincia la Altagracia 23002, Dominican Republic</li>
             </ul>
           </div>
         </div>
         <div class="col-lg-3 offset-lg-1">
-          <div class="ft-newslatter">
-            <h6>New latest</h6>
-            <p>Get the latest updates and offers.</p>
-            <form action="#" class="fn-form">
-              <input type="text" placeholder="Email">
-              <button type="submit"><i class="fa fa-send"></i></button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="copyright-option">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-7">
-          <ul>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Terms of use</a></li>
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Environmental Policy</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-5">
-          <div class="co-text">
-            <p>
-              Copyright ©<script>
-                document.write(new Date().getFullYear());
-              </script>2021 All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-            </p>
+          <div class="ft-contact">
+            <h6>Contactos</h6>
+            <ul>
+              <li><a href="mailto:info@edenroccapcana.com">info@edenroccapcana.com</a></li>
+              <li>Tel: <a href="tel:+18094697469">+1 809 469 7469</a></li>
+              <li>Tel: <a href="tel:+18096955555">+1 809 695 5555</a></li>
+              <li><a href="tel:+18333336762">Toll Free number US & Canada: +1 833 333 6762</a></li>
+            </ul>
           </div>
         </div>
       </div>
