@@ -15,9 +15,8 @@
                       <h3><?= $item->name ?></h3>
                     </a>
                   </li>
-                  <li>Adultos: <?= $item->room_capacity_id ?></li>
-                  <li>Ninos: <?= $item->max_children ?></li>
-                  <li>Precio: <?= 0.00 ?></li>
+                  <li>Adultos: <?= $item->room_capacity_id ?>, Ninos: <?= $item->max_children ?></li>
+                  <li>Desde: <?= number_format($item->minPrice()) ?> por noche</li>
                   <li class="mt-3"><a class="btn btn-sm btn-primary" href='#'>Seleccionar</a></li>
                 </ul>
               </div>

@@ -2,7 +2,11 @@
   <form action="/Session/create" method="post">
     <h1 class="h3 mb-3 fw-normal text-center">Credenciales de acceso</h1>
 
-
+    <?php foreach ($this->errors as $error) : ?>
+      <div class="alert alert-danger" role="alert">
+        <?= $error ?>
+      </div>
+    <?php endforeach; ?>
 
     <div class="form-floating">
       <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" />

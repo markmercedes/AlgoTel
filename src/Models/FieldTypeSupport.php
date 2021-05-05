@@ -75,7 +75,7 @@ trait FieldTypeSupport
       ]);
     }
 
-    $results = array_merge($uploadedFiles, $this->initialAttributes[$attribute]);
+    $results = array_merge((array)$this->initialAttributes[$attribute], $uploadedFiles);
 
     return $this->writeJson($results);
   }

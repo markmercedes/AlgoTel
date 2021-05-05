@@ -10,6 +10,7 @@ use Utils\Arr;
 class Base
 {
   private $currentUser = null;
+  protected $errors = [];
 
   function currentUserID()
   {
@@ -164,7 +165,7 @@ class Base
     }
   }
 
-  const VALID_ACTION_METHODS = ['index', 'new', 'create', 'edit', 'destroy', 'update'];
+  const VALID_ACTION_METHODS = ['index', 'show', 'new', 'create', 'edit', 'destroy', 'update'];
 
   public static function dispatchController()
   {

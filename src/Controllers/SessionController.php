@@ -9,8 +9,16 @@ use Utils\Arr;
 
 class SessionController extends Base
 {
+  function index()
+  {
+    $this->sendHomeIfAlreadyLoggedIn();
+
+    parent::index();
+  }
   function create()
   {
+    $this->sendHomeIfAlreadyLoggedIn();
+
     $results = User::where([
       'email = ?',
       'password = ?'
@@ -20,8 +28,9 @@ class SessionController extends Base
       $_SESSION['USER_ID'] = $results[0]->id;
       $this->redirectToReturnUrl();
     } else {
-      header("Location: /Session");
-      exit();
+      $this->errors[] = 'Login invalido';
+
+      parent::index();
     }
   }
 
@@ -32,5 +41,13 @@ class SessionController extends Base
     $this->redirectToReturnUrl();
 
     exit();
+  }
+
+  function sendHomeIfAlreadyLoggedIn()
+  {
+    if ($this->currentUser()) {
+      header("Location: /");
+      exit();
+    }
   }
 }

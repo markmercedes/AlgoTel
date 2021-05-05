@@ -34,7 +34,7 @@
           <div class="room-amenities mt-5 row">
             <h3 class="mb-3">Amenidades y servicios</h3>
             <?php foreach ($this->item->amenities() as $amenity) : ?>
-              <div class="col-lg-4 col-12 thin-list py-3 mr-3">
+              <div class="col-lg-6 col-12 thin-list py-3 mr-3">
                 <i class="fa fa-check color-theme-primary"></i>
                 <?= $amenity ?>
               </div>

@@ -4,8 +4,8 @@
       <div class="row">
         <div class="col-lg-6">
           <ul class="tn-left">
-            <li><i class="fa fa-phone"></i> (12) 345 67890</li>
-            <li><i class="fa fa-envelope"></i> info.colorlib@gmail.com</li>
+            <li><a class="text-primary" href="tel:+18094697469"> <i class="fa fa-phone"></i> +1 809 469 7469</a></li>
+            <li><a class="text-primary" href="mailto:info@edenroccapcana.com"> <i class="fa fa-envelope"></i> info@edenroccapcana.com</a></li>
           </ul>
         </div>
         <div class="col-lg-6">
@@ -33,8 +33,6 @@
             <nav class="mainmenu">
               <ul>
                 <li><a href='<?= linkTo(["Rooms"]) ?>'>Habitaciones</a></li>
-                <li><a href="./about-us.html">Nosotros</a></li>
-                <li><a href="./contact.html">Contact</a></li>
 
                 <?php if ($this->currentUser()) : ?>
                   <?php if ($this->isAdmin()) : ?>
