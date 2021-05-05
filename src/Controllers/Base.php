@@ -3,11 +3,42 @@
 namespace Controllers;
 
 use Config\App;
+use Models\User;
 use Web\Params;
 use Utils\Arr;
 
 class Base
 {
+  private $currentUser = null;
+
+  function currentUserID()
+  {
+    if (isset($_SESSION['USER_ID'])) {
+      return $_SESSION['USER_ID'];
+    }
+  }
+
+  function redirectToReturnUrl()
+  {
+    $returnUrl = Params::get('ReturnUrl', '/');
+    header("Location: $returnUrl");
+    exit();
+  }
+
+  function currentUser()
+  {
+    if ($this->currentUserID()) {
+      return $this->currentUser ??= User::find($this->currentUserID());
+    }
+  }
+
+  function isAdmin()
+  {
+    if ($this->currentUser()) {
+      return $this->currentUser()->isAdmin();
+    }
+  }
+
   public function index()
   {
     $this->render(
@@ -133,6 +164,8 @@ class Base
     }
   }
 
+  const VALID_ACTION_METHODS = ['index', 'new', 'create', 'edit', 'destroy', 'update'];
+
   public static function dispatchController()
   {
     $controllerNamespace = static::currentControllerNamespace();
@@ -149,6 +182,10 @@ class Base
 
     if (!$controllerName) $controllerName = 'Home';
     if (!$action) $action = 'index';
+
+    if (!in_array($action, static::VALID_ACTION_METHODS)) {
+      $action = 'index';
+    }
 
     $controllerClass = implode('\\', Arr::withoutEmpty([
       'Controllers',

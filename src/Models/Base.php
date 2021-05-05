@@ -14,28 +14,20 @@ class Base
   use FieldTypeSupport;
 
   static protected $tableName;
-  static protected $primaryKey;
-  static protected $properties = [];
   protected $attributes = [];
   protected $initialAttributes = [];
   protected $validAttributes = [];
   protected $errors = [];
-  static protected $tableMetadata;
+  static protected $tablesMetadata = [];
 
   static protected function loadTableMetadata()
   {
-    if (!static::$tableMetadata) {
-      static::$tableMetadata = new TableMetadata(static::$tableName);
-      static::$primaryKey = static::$tableMetadata->primaryKey();
-      static::$properties = static::$tableMetadata->properties();
-    }
-
-    return static::$tableMetadata;
+    return new TableMetadata(static::$tableName);
   }
 
   static function tableMetadata()
   {
-    return static::$tableMetadata ??= static::loadTableMetadata();
+    return static::$tablesMetadata[static::$tableName] ??= static::loadTableMetadata();
   }
 
   function __construct($attributes = [])
@@ -56,7 +48,7 @@ class Base
 
   public function isNewRecord()
   {
-    return !count($this->attributes) || !(bool)$this->attributes[static::$primaryKey];
+    return !count($this->attributes) || !(bool)$this->attributes[static::tableMetadata()->primaryKey()];
   }
 
   public function setAttributes($attributes)
@@ -72,7 +64,7 @@ class Base
   {
     if (count($changes)) {
       $tableName = static::$tableName;
-      $primaryKey = static::$primaryKey;
+      $primaryKey = static::tableMetadata()->primaryKey();
       $conditions = [];
 
       $sql = "UPDATE $tableName SET ";
@@ -103,7 +95,7 @@ class Base
 
     $newId = Connection::instance()->lastInsertId();
 
-    $this->{static::$primaryKey} = $newId;
+    $this->{static::tableMetadata()->primaryKey()} = $newId;
   }
 
   function cleanAttributeName($value)
@@ -166,7 +158,7 @@ class Base
   {
     $changes = [];
 
-    foreach (static::$properties as $property) {
+    foreach (static::tableMetadata()->properties() as $property) {
       if ($this->attributes[$property] != $this->initialAttributes[$property]) {
         $changes[$property] = $this->writeAttribute($property, $this->attributes[$property]);
       }
@@ -229,7 +221,7 @@ class Base
       $propertyFromRelation = explode('.', $property)[1];
     }
 
-    if (in_array($property, static::$properties)) {
+    if (in_array($property, static::tableMetadata()->properties())) {
       return $this->attributes[$property];
     }
 
@@ -254,7 +246,7 @@ class Base
 
   public function __set($property, $value)
   {
-    if (in_array($property, static::$properties)) {
+    if (in_array($property, static::tableMetadata()->properties())) {
       $this->attributes[$property] = $value;
     } else {
       $this->handleUndefinedProperty($property);
@@ -263,7 +255,6 @@ class Base
 
   static function where($conditions = [], $params = [], $order = null, $direction = 'ASC', $page = 1, $limit = 100)
   {
-    static::loadTableMetadata();
     $pdo = Connection::instance();
 
     $sqlConditions = implode(" AND ", $conditions);
@@ -273,7 +264,7 @@ class Base
     }
 
     if (!$order) {
-      $order = static::$primaryKey;
+      $order = static::tableMetadata()->primaryKey();
     }
 
     $clause = 'SELECT * from ' . static::$tableName . " $sqlConditions ORDER BY $order $direction LIMIT $limit";
@@ -292,12 +283,12 @@ class Base
 
   static function find($id)
   {
-    static::loadTableMetadata();
     $tableName = static::$tableName;
-    $primaryKey = static::$primaryKey;
+    $primaryKey = static::tableMetadata()->primaryKey();
     $pdo = Connection::instance();
+    $sql = "SELECT * from {$tableName} where $primaryKey=:id";
 
-    $stmt = $pdo->prepare("SELECT * from {$tableName} where $primaryKey=:id");
+    $stmt = $pdo->prepare($sql);
     $stmt->execute([$primaryKey => $id]);
     $record = $stmt->fetch();
 

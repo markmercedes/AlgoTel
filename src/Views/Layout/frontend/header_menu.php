@@ -10,13 +10,7 @@
         </div>
         <div class="col-lg-6">
           <div class="tn-right">
-            <div class="top-social">
-              <a href="#"><i class="fab fa-facebook"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-tripadvisor"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-            <a href="#" class="bk-btn">Reserva ahora!</a>
+            <a href='<?= linkTo(['Session'], ['ReturnUrl' => $_SERVER['REQUEST_URI']]) ?>' class="bk-btn">Reserva ahora!</a>
           </div>
         </div>
       </div>
@@ -41,6 +35,16 @@
                 <li><a href='<?= linkTo(["Rooms"]) ?>'>Habitaciones</a></li>
                 <li><a href="./about-us.html">Nosotros</a></li>
                 <li><a href="./contact.html">Contact</a></li>
+
+                <?php if ($this->currentUser()) : ?>
+                  <?php if ($this->isAdmin()) : ?>
+                    <li><a href='<?= linkTo(['Admin', 'Rooms']) ?>'>
+                        <i class="fa fa-key"> </i> Admin Panel</a></li>
+                  <?php endif; ?>
+                  <li><a href='<?= linkTo(['Session', 'destroy'], ['ReturnUrl' => $_SERVER['REQUEST_URI']]) ?>'><i class="fa fa-times"> </i> SALIR DE MI CUENTA</a></li>
+                <?php else : ?>
+                  <li><a href='<?= linkTo(['Session'], ['ReturnUrl' => $_SERVER['REQUEST_URI']]) ?>'><i class="fa fa-user"> </i> LOGIN</a></li>
+                <?php endif; ?>
               </ul>
             </nav>
             <div class="nav-right search-switch">

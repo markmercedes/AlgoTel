@@ -1,3 +1,7 @@
+.main-content {
+  min-height: 800px;
+}
+
 .home-entry {
   /* background-image: url("https://www.filepicker.io/api/file/Yjjg465DRWO2Nf8daezh/convert?w=1440&h=575&fit=crop&quality=70"); */
   background-image: url("https://www.edenroccapcana.com/wp-content/uploads/2020/06/Home1.jpg");
@@ -359,6 +363,16 @@ ol {
   font-weight: 700;
   padding: 16px 28px 15px;
   background: #118acb;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.top-nav .tn-right .session-btn {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 16px 28px 15px;
+  background: #e2970d;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 2px;

@@ -14,8 +14,17 @@ class AdminBaseController extends \Controllers\Base
     require App::viewsPath('Layout', 'backend', 'Application');
   }
 
+  protected function validateUser()
+  {
+    if (!$this->isAdmin()) {
+      header("Location: /Session");
+      exit();
+    }
+  }
+
   function index()
   {
+    $this->validateUser();
     contentFor('title', $this->resourceManager()->resourcesLabel());
 
     parent::index();
@@ -44,6 +53,7 @@ class AdminBaseController extends \Controllers\Base
 
   public function new()
   {
+    $this->validateUser();
     contentFor('title', 'Crear ' . $this->resourceManager()->resourceLabel());
 
     $this->render(
@@ -54,6 +64,7 @@ class AdminBaseController extends \Controllers\Base
 
   public function edit()
   {
+    $this->validateUser();
     contentFor('title', 'Editar ' . $this->resourceManager()->resourceLabel());
 
     $this->render(
@@ -80,6 +91,7 @@ class AdminBaseController extends \Controllers\Base
 
   public function update()
   {
+    $this->validateUser();
     $this->model()->setAttributes($this->params());
     $this->model()->save();
 
@@ -95,6 +107,7 @@ class AdminBaseController extends \Controllers\Base
 
   public function create()
   {
+    $this->validateUser();
     $this->model()->setAttributes($this->params());
 
     if ($this->model()->save()) {

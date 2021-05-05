@@ -22,6 +22,7 @@ spl_autoload_register('autoloadStrategy');
 Utils\DotEnv::load();
 
 ob_start();
+session_start();
 
 Controllers\Base::dispatchController();
 

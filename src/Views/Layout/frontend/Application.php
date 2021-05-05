@@ -25,7 +25,7 @@
 <body>
   <?php $this->renderPartial('/Layout/frontend/header_menu') ?>
 
-  <main>
+  <main class="main-content">
     <?php $this->yield($mainContent) ?>
   </main>
 

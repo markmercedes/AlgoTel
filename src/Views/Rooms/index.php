@@ -36,6 +36,4 @@
   .item-in-list {
     border: 1px solid #eee;
   }
-
-  .item-in-list-content {}
 </style>
