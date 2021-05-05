@@ -1,5 +1,7 @@
 <?php
 
+use Web\Params;
+
 const DS = DIRECTORY_SEPARATOR;
 
 $GLOBALS['CONTENTS'] = [];
@@ -42,6 +44,17 @@ function linkTo($path = [], $params = [])
   return '/' . $url;
 }
 
+function lintoToReservation($path = [], $params = [])
+{
+  return linkTo(
+    $path,
+    array_merge($params, [
+      'date-in_submit' => Params::get('date-in_submit'),
+      'date-out_submit' => Params::get('date-out_submit'),
+    ])
+  );
+}
+
 function uploadsPath()
 {
   return implode(DS, [appPath(), 'public', 'uploads']);
@@ -56,4 +69,16 @@ function uploadsUrl($path)
 function appPath()
 {
   return dirname(realpath('.'));
+}
+
+function select_tag($name, $id, $options, $placeholder = null, $selected = null)
+{
+?>
+  <select class="form-select" id='<?= $id ?>' name='<?= $name ?>'>
+    <option><?= $placeholder ?></option>
+    <?php foreach ($options as $key => $value) : ?>
+      <option <?= $key == $selected ? "selected='selected'" : null ?> value='<?= $key ?>'><?= htmlspecialchars($value) ?></option>
+    <?php endforeach; ?>
+  </select>
+<?php
 }

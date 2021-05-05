@@ -11,7 +11,7 @@
               <div class="col-7 item-in-list-content py-2">
                 <ul class="list-unstyled">
                   <li class="mb-2">
-                    <a href='<?= linkTo(['Rooms', 'show'], ['id' => $item->id]) ?>'>
+                    <a href='<?= lintoToReservation(['Rooms', 'show'], ['id' => $item->id]) ?>'>
                       <h3><?= $item->name ?></h3>
                     </a>
                   </li>

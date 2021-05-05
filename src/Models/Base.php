@@ -9,6 +9,7 @@ use PDOException;
 class Base
 {
   const FIELD_TYPES = [];
+  const RELATED_MODELS = [];
 
   use FieldTypeSupport;
 
@@ -198,10 +199,54 @@ class Base
     throw new UndefinedPropertyException($message, 5);
   }
 
+  static $eagerLoadedRelations = [];
+
+  public function relations($name)
+  {
+    return static::$eagerLoadedRelations[$name] ??= static::loadModelData(ucfirst($name));
+  }
+
+  static function loadModelData($name)
+  {
+    $modelClass = "Models\\$name";
+
+    $items = forward_static_call_array([$modelClass, 'where'], []);
+
+    return array_reduce($items, function ($result, $item) {
+      $result[$item->id] = $item;
+
+      return $result;
+    }, []);
+  }
+
   public function __get($property)
   {
+    $relation = null;
+    $propertyFromRelation = null;
+
+    if (str_contains($property, '.')) {
+      $relation = explode('.', $property)[0];
+      $propertyFromRelation = explode('.', $property)[1];
+    }
+
     if (in_array($property, static::$properties)) {
       return $this->attributes[$property];
+    }
+
+    if (!$relation) {
+      $relation = $property;
+    }
+
+    if (in_array($relation, array_keys(static::RELATED_MODELS))) {
+      $relatedProperty = static::RELATED_MODELS[$relation];
+
+      $relatedRecord = $this->relations($relation)[$this->attributes[$relatedProperty]];
+
+      if ($propertyFromRelation) {
+        return $relatedRecord->{$propertyFromRelation};
+      } else {
+        return $relatedRecord;
+      }
     }
 
     $this->handleUndefinedProperty($property);

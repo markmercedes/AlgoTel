@@ -13,6 +13,11 @@ class Room extends Base
 
   static protected $tableName = 'rooms';
 
+  const RELATED_MODELS = [
+    'roomCapacity' => 'room_capacity_id',
+    'roomType' => 'room_type_id'
+  ];
+
   function amenities()
   {
     return explode("\n", $this->extra_description);

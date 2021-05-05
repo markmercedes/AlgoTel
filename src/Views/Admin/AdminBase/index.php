@@ -13,7 +13,7 @@
         <tr>
           <?php foreach ($this->resourceManager()->listableAttributes() as $attribute) : ?>
             <th>
-              <?= ucfirst($attribute) ?>
+              <?= $this->resourceManager()->labelFor($attribute) ?>
             </th>
           <?php endforeach; ?>
           <th></th>

@@ -11,7 +11,7 @@ class Base
   const RESOURCES_LABEL = '';
   const EDITABLE_ATTRIBUTES = [];
   const LISTABLE_ATTRIBUTES = [];
-  const TOP_LIST_ACTIONS = ['new', 'search'];
+  const TOP_LIST_ACTIONS = ['new'];
   const LISTABLE_ACTIONS = ['edit', 'destroy'];
   const EDITABLE_ACTIONS = ['save', 'cancel'];
   const CREATEABLE_ACTIONS = ['save', 'cancel'];

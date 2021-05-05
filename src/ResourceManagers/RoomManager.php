@@ -8,10 +8,12 @@ class RoomManager extends Base
   const RESOURCE_LABEL = 'Habitacion';
   const RESOURCES_LABEL = 'Habitaciones';
   const EDITABLE_ATTRIBUTES = ['name', 'description', 'room_type_id', 'quantity', 'room_capacity_id', 'max_children', 'extra_description', 'price_config', 'gallery',];
-  const LISTABLE_ATTRIBUTES = ['name', 'quantity', 'room_capacity_id', 'room_type_id', 'max_children'];
+  const LISTABLE_ATTRIBUTES = ['name', 'roomCapacity.name', 'roomType.name', 'quantity', 'max_children'];
   const ATTRIBUTE_TYPES = [
     'gallery' => ['type' => 'ImageGallery', 'label' => 'Image Gallery'],
     'name' => ['type' => 'String', 'label' => 'Nombre'],
+    'roomCapacity.name' => ['type' => 'String', 'label' => 'Capacidad'],
+    'roomType.name' => ['type' => 'String', 'label' => 'Tipo'],
     'description' => ['type' => 'Text', 'label' => 'Descripcion'],
     'max_children' => ['type' => 'Integer', 'label' => 'Ninos por habitacion'],
     'quantity' => ['type' => 'Integer', 'label' => 'Cantidad disponible'],
