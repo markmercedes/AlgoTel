@@ -9,6 +9,10 @@ class DotEnv
     $_ENV['APP_ENV'] = getenv('APP_ENV');
     if (!$_ENV['APP_ENV']) $_ENV['APP_ENV'] = 'production';
 
+    if ($_ENV['APP_ENV'] == 'live') {
+      return;
+    }
+
     if (!isset($_SERVER['DOCUMENT_ROOT']))
       $_SERVER['DOCUMENT_ROOT'] =
         str_replace($_SERVER['SCRIPT_NAME'], '', $_SERVER['SCRIPT_FILENAME']);
