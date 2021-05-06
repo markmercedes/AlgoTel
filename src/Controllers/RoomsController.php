@@ -9,8 +9,10 @@ class RoomsController extends Base
 {
   public function index()
   {
+    $this->items = array_filter(Room::where(), function ($item) {
+      return $item->roomCapacity->capacity >= guests() && $item->max_children >= children();
+    });
 
-    $this->items = Room::where();
 
     $this->render(
       'index',
