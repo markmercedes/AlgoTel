@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html lang='es' xml:lang='es'>\
 
 <head>
+  <meta charset='utf-8'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/js/bootstrap.min.js"></script>
