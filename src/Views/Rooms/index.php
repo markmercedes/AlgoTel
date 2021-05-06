@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-8">
         <?php foreach ($this->items as $item) : ?>
-          <div class="item-in-list mb-5">
+          <div class="item-in-list mb-5" data-reservation-config='<?= roomReservationConfig($item) ?>'>
             <div class="row">
               <div class="col-lg-5 col-12">
                 <a href='<?= lintoToReservation(['Rooms', 'show'], ['id' => $item->id]) ?>'>

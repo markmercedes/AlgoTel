@@ -48,10 +48,44 @@ function lintoToReservation($path = [], $params = [])
 {
   return linkTo(
     $path,
-    array_merge($params, [
+    array_merge([
       'date-in_submit' => Params::get('date-in_submit'),
       'date-out_submit' => Params::get('date-out_submit'),
-    ])
+      'guests' => Params::get('guests'),
+      'children' => Params::get('children'),
+    ], $params)
+  );
+}
+
+function checkinDate()
+{
+  return Params::get('date-in_submit', date('Y-m-d', strtotime("+2 days")));
+}
+
+function checkoutDate()
+{
+  return Params::get('date-out_submit', date('Y-m-d', strtotime("+3 days")));
+}
+
+function roomReservationConfig($room)
+{
+  $dateIn = checkinDate();
+  $dateOut = checkoutDate();
+
+  $in = DateTime::createFromFormat('Y-m-d', $dateIn);
+  $out = DateTime::createFromFormat('Y-m-d', $dateOut);
+
+  return json_encode(
+    [
+      'room_id' => $room->id,
+      'qty' => 1,
+      'per_night' => $room->averagePrice($in, $out),
+      'total' => $room->totalPrice($in, $out),
+      'date-in' => $dateIn,
+      'date-out' => $dateOut,
+      'guests' => Params::get('guests', '2'),
+      'children' => Params::get('children', '0')
+    ]
   );
 }
 

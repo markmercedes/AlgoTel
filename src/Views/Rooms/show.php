@@ -88,7 +88,7 @@
             <li>
 
               <div class="card">
-                <a href="<?= lintoToReservation(['Rooms'], ['id' => $room->id]) ?>">
+                <a href="<?= lintoToReservation(['Rooms', 'show'], ['id' => $room->id]) ?>">
                   <img class="card-img-top" src='<?= uploadsUrl($room->gallery[0]); ?>' />
                 </a>
                 <div class="card-body">

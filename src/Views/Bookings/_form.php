@@ -20,7 +20,7 @@ use Web\Params;
     </div>
     <div class="select-option">
       <label for="room">Niños:</label>
-      <?php select_tag('children', 'children', selected: Params::get('children'), options: ['0' => '0 niños', '1' => '1 niño', '2' => '2 niños', '2' => '2 niños', '3' => '3 niños', '4' => '4 niños', '5' => '5 niños']) ?>
+      <?php select_tag('children', 'children', selected: Params::get('children'), options: ['0' => '0 niños', '1' => '1 niño', '2' => '2 niños']) ?>
     </div>
     <div class="d-grid gap-2">
       <button class="btn btn-primary" type="submit">Revisar disponibilidad</button>

@@ -23,14 +23,20 @@ class Room extends Base
     return explode("\n", $this->extra_description);
   }
 
-  function averagePrice()
+  function averagePrice($dateIn = null, $dateOut = null)
   {
     return round(array_sum(array_map(function ($price) {
       return (int)$price;
     }, array_values(get_object_vars($this->price_config)))) / 7.0, 2);
   }
 
-  function minPrice()
+
+  function totalPrice($dateIn = null, $dateOut = null)
+  {
+    return $dateOut->diff($dateIn)->days * $this->averagePrice($dateIn, $dateOut);
+  }
+
+  function minPrice($dateIn = null, $dateOut = null)
   {
     return round(min(array_map(function ($price) {
       return (int)$price;
