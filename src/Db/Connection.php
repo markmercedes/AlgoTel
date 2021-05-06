@@ -20,7 +20,7 @@ class Connection
     $dbport = $_ENV['DB_PORT'];
 
     try {
-      $conn = new \PDO("mysql:host=$servername;dbname=$dbname;port=$dbport", $username, $password);
+      $conn = new \PDO("mysql:host=$servername;dbname=$dbname;port=$dbport", $username, $password, array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
       // set the PDO error mode to exception
       $conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
       return self::$activeConnection = $conn;
