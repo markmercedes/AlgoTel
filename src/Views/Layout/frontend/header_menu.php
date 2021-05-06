@@ -42,6 +42,7 @@
                   <li><a href='<?= linkTo(['Session', 'destroy'], ['ReturnUrl' => $_SERVER['REQUEST_URI']]) ?>'><i class="fa fa-times"> </i> SALIR DE MI CUENTA</a></li>
                 <?php else : ?>
                   <li><a href='<?= linkTo(['Session'], ['ReturnUrl' => $_SERVER['REQUEST_URI']]) ?>'><i class="fa fa-user"> </i> LOGIN</a></li>
+                  <li><a href='<?= linkTo(['Registrations', 'new'], ['ReturnUrl' => $_SERVER['REQUEST_URI']]) ?>'><i class="fa fa-key"> </i> REGISTRO</a></li>
                 <?php endif; ?>
               </ul>
             </nav>

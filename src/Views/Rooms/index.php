@@ -5,14 +5,16 @@
         <?php foreach ($this->items as $item) : ?>
           <div class="item-in-list mb-5">
             <div class="row">
-              <div class="col-5">
-                <img src='<?= uploadsUrl($item->gallery[0]); ?>' />
+              <div class="col-lg-5 col-12">
+                <a href='<?= lintoToReservation(['Rooms', 'show'], ['id' => $item->id]) ?>'>
+                  <img src='<?= uploadsUrl($item->gallery[0]); ?>' />
+                </a>
               </div>
-              <div class="col-7 item-in-list-content py-2">
+              <div class="col-lg-7 item-in-list-content py-2 px-3">
                 <ul class="list-unstyled">
                   <li class="mb-2">
                     <a href='<?= lintoToReservation(['Rooms', 'show'], ['id' => $item->id]) ?>'>
-                      <h3><?= $item->name ?></h3>
+                      <h4><?= $item->name ?></h4>
                     </a>
                   </li>
                   <li>Adultos: <?= $item->room_capacity_id ?>, Ninos: <?= $item->max_children ?></li>
@@ -34,5 +36,9 @@
 <style>
   .item-in-list {
     border: 1px solid #eee;
+  }
+
+  .item-in-list img {
+    min-height: 180px;
   }
 </style>

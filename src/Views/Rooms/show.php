@@ -88,11 +88,11 @@
             <li>
 
               <div class="card">
-                <a href="<?= linkTo(['Rooms'], ['id' => 1]) ?>">
+                <a href="<?= lintoToReservation(['Rooms'], ['id' => $room->id]) ?>">
                   <img class="card-img-top" src='<?= uploadsUrl($room->gallery[0]); ?>' />
                 </a>
                 <div class="card-body">
-                  <a href="<?= linkTo(['Rooms', 'show'], ['id' => 1]) ?>">
+                  <a href="<?= lintoToReservation(['Rooms', 'show'], ['id' => $room->id]) ?>">
                     <h5><?= $room->name ?></h5>
                   </a>
                   <h5>Desde: <?= number_format($room->minPrice()) ?></h5>

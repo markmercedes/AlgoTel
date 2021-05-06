@@ -11,7 +11,7 @@ class SaveAction extends Base
     $form = $options['form'];
 ?>
     <button name="button" type="submit" class="btn btn-primary btn-save-item" form='<?= $form->formId() ?>'><i class="fa fa-save"></i>
-      Save
+      Guardar
     </button>
 <?php
   }

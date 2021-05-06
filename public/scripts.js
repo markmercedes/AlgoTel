@@ -1,5 +1,24 @@
 $(() => {
-  $("#lightSlider").lightSlider();
+  $("#lightSlider").lightSlider({
+    item: 3,
+    responsive: [
+      {
+        breakpoint: 800,
+        settings: {
+          item: 2,
+          slideMove: 1,
+          slideMargin: 6,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          item: 1,
+          slideMove: 1
+        }
+      }
+    ]
+  });
 
   var today = new Date();
 

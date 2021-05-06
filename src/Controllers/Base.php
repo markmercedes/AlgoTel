@@ -22,6 +22,11 @@ class Base
   function redirectToReturnUrl()
   {
     $returnUrl = Params::get('ReturnUrl', '/');
+
+    if ($returnUrl == '/Registrations/create') {
+      $returnUrl = '/';
+    }
+
     header("Location: $returnUrl");
     exit();
   }
@@ -167,6 +172,11 @@ class Base
 
   const VALID_ACTION_METHODS = ['index', 'show', 'new', 'create', 'edit', 'destroy', 'update'];
 
+  public function validActionMethods()
+  {
+    return static::VALID_ACTION_METHODS;
+  }
+
   public static function dispatchController()
   {
     $controllerNamespace = static::currentControllerNamespace();
@@ -184,10 +194,6 @@ class Base
     if (!$controllerName) $controllerName = 'Home';
     if (!$action) $action = 'index';
 
-    if (!in_array($action, static::VALID_ACTION_METHODS)) {
-      $action = 'index';
-    }
-
     $controllerClass = implode('\\', Arr::withoutEmpty([
       'Controllers',
       $controllerNamespace,
@@ -195,6 +201,15 @@ class Base
     ]));
 
     $controller = new $controllerClass();
+
+    if (!in_array($action, $controller->validActionMethods())) {
+      throw new InvalidActionMethodRoutingException($action);
+    }
+
     $controller->dispatch($action);
   }
+}
+
+class InvalidActionMethodRoutingException extends \Exception
+{
 }
