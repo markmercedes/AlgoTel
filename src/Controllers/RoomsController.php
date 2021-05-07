@@ -13,7 +13,6 @@ class RoomsController extends Base
       return $item->roomCapacity->capacity >= guests() && $item->max_children >= children();
     });
 
-
     $this->render(
       'index',
       []

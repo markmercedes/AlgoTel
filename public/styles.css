@@ -576,10 +576,6 @@ ol {
   -webkit-box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.31);
   -moz-box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.31);
 }
-.booking-form h3 {
-  color: #19191a;
-  margin-bottom: 36px;
-}
 .booking-form form .check-date {
   position: relative;
   margin-bottom: 15px;

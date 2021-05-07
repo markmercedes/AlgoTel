@@ -1,4 +1,42 @@
+function refreshSmallCart() {
+  $.get('/SmallCart', function (data) {
+    $('#small-cart').replaceWith(data);
+  });
+}
+
 $(() => {
+  $(document).on('click', '.remove-item-from-cart', function (e) {
+    e.preventDefault();
+
+    var itemId = $(this).data('id');
+
+    var items = JSON.parse(Cookies.get('CART') || '[]');
+
+    items = items.filter((item) => {
+      return item.id != itemId
+    });
+
+    Cookies.set('CART', JSON.stringify(items));
+
+    refreshSmallCart();
+  });
+
+
+
+  $('.btn-select-room-for-reservation').click(function (e) {
+    e.preventDefault();
+
+    var config = $(this).closest('.item-in-list').data('reservationConfig');
+
+    var items = JSON.parse(Cookies.get('CART') || '[]');
+
+    items.push(Object.assign({}, { id: Math.floor(Math.random() * 100000000) }, config));
+
+    Cookies.set('CART', JSON.stringify(items));
+
+    refreshSmallCart();
+  });
+
   $("#lightSlider").lightSlider({
     item: 3,
     responsive: [

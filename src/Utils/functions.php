@@ -74,7 +74,7 @@ function guests()
 
 function children()
 {
-  return Params::get('children', '2');
+  return Params::get('children', '0');
 }
 
 function roomReservationConfig($room)
