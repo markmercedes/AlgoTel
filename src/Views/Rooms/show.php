@@ -65,14 +65,7 @@
       </div>
 
       <div class="col-lg-4">
-
-        <div class="d-grid gap-2">
-
-          <a class="btn btn-primary call-to-action-btn mb-4" href="#">
-            <h2 class="text-light">Agendar ahora</h2>
-          </a>
-        </div>
-
+        <?php $this->renderPartial('/SmallCart/index') ?>
         <?php $this->renderPartial('/Bookings/_form') ?>
       </div>
     </div>
