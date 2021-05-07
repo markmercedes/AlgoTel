@@ -1,11 +1,13 @@
 <?php
 
+use Utils\Arr;
+
 class BookingCart
 {
   private function rawItems()
   {
     try {
-      return json_decode($_COOKIE['CART']);
+      return json_decode(Arr::get($_COOKIE, 'CART', '[]'));
     } catch (\Throwable $th) {
       return [];
     }
