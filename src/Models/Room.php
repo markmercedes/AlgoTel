@@ -18,6 +18,21 @@ class Room extends Base
     'roomType' => 'room_type_id'
   ];
 
+  const SELECT_CLAUSE =
+  "SELECT rooms.*, (" .
+    "SELECT COUNT(1) FROM booking_items bi JOIN bookings b ON b.id = bi.booking_id WHERE bi.room_id = rooms.id AND b.`status` IN('complete', 'processing') ) occupancy " .
+    "FROM ";
+
+  function _occupancy()
+  {
+    return (int) $this->dirtyAttributes['occupancy'];
+  }
+
+  function _available()
+  {
+    return $this->quantity - $this->_occupancy();
+  }
+
   function amenities()
   {
     return explode("\n", $this->extra_description);

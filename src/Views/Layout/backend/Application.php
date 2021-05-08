@@ -8,11 +8,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/css/bootstrap.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.css" integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A==" crossorigin="anonymous" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <script src="/pickadate/picker.js"></script>
+  <script src="/pickadate/picker.date.js"></script>
+  <script src="/pickadate/translations/es_ES.js"></script>
+  <link rel="stylesheet" href="/pickadate/themes/default.css" />
+  <link rel="stylesheet" href="/pickadate/themes/default.date.css" />
   <link rel="stylesheet" href="/admin/styles.css" />
   <script src="/admin/scripts.js"></script>
   <meta name="theme-color" content="#7952b3">
@@ -30,10 +32,34 @@
       <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse">
         <div class="position-sticky pt-3">
           <ul class="nav flex-column">
-            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#"><span data-feather="home"></span>Dashboard </a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Rooms']) ?>"><span data-feather="shopping-cart"></span>Habitaciones </a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'RoomTypes']) ?>"><span data-feather="shopping-cart"></span>Tipos de habitaciones </a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'RoomCapacities']) ?>"><span data-feather="shopping-cart"></span>Capacidades de habitaciones </a></li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" href="<?= linkTo(['Admin', 'Bookings']) ?>">
+                <h5 class="text-primary">Bookings </h5>
+              </a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Bookings'], ['order_status' => 'pending']) ?>">Pendientes</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Bookings'], ['order_status' => 'processing']) ?>">En proceso</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Bookings'], ['order_status' => 'cancelled']) ?>">Canceladas</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Bookings'], ['order_status' => 'complete', 'checkin_date_submit' => date('Y-m-d')]) ?>">Checkin hoy</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Bookings'], ['order_status' => 'complete', 'checkout_date_submit' => date('Y-m-d')]) ?>">Checkout hoy</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Bookings']) ?>">Todos los bookings</a></li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" href="<?= linkTo(['Admin', 'Rooms']) ?>">
+                <h5 class="text-primary">Habitaciones </h5>
+              </a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'RoomTypes']) ?>">Tipos de habitaciones </a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'RoomCapacities']) ?>">Capacidades de habitaciones </a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= linkTo(['Admin', 'Users']) ?>">
+                <h5 class="text-primary">Usuarios </h5>
+              </a>
+            </li>
+            <li class="nav-item">
+              <h5 class="text-primary nav-link">Reportes </h5>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">Bookings por fecha </a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Habitaciones ocupadas </a></li>
           </ul>
         </div>
       </nav>

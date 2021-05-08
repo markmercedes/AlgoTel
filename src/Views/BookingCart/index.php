@@ -32,9 +32,9 @@ $itemsInCart = $bookinCart->items();
                           <br />
                           Precio: <strong><?= number_format($item->total()) ?></strong>
                           <br />
-                          Check - in: <strong><?= $item->ckeckinDate() ?></strong>
+                          Check - in: <strong><?= $item->checkinDate() ?></strong>
                           <br />
-                          Check - out: <strong><?= $item->ckeckoutDate() ?></strong>
+                          Check - out: <strong><?= $item->checkoutDate() ?></strong>
                         </div>
                         <div class="col pt-2 text-end">
                           <a class="btn btn-outline-danger btn-sm text-end remove-item-from-cart" data-id='<?= $item->id() ?>'><i class="fa fa-trash"></i></a>
@@ -74,7 +74,7 @@ $itemsInCart = $bookinCart->items();
                   </div>
                 </div>
               <?php else : ?>
-                <form method="post" id="checkout-form">
+                <form method="post" id="checkout-form" action="/Checkout/create">
                   <div class="form-check mb-3">
                     <input required="required" class="form-check-input" type="checkbox" value="" id="accept-term-and-conditions">
                     <label class="form-check-label" for="accept-term-and-conditions">
@@ -88,8 +88,8 @@ $itemsInCart = $bookinCart->items();
                     </label>
                   </div>
                   <div class="form-check mb-3">
-                    <label for="additional-information" class="form-label">Datos adicionales</label>
-                    <textarea class="form-control" id="additional-information" rows="3"></textarea>
+                    <label for="notes" class="form-label">Datos adicionales</label>
+                    <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
                   </div>
                   <hr />
                   <div class="d-grid gap-2">

@@ -2,10 +2,10 @@
 
 namespace Booking;
 
-class BookingItem
+class BookingCartItem
 {
   public $item;
-  private $room;
+  public $room;
 
   function __construct($item, $room)
   {
@@ -33,12 +33,12 @@ class BookingItem
     return $this->item->total;
   }
 
-  function ckeckinDate()
+  function checkinDate()
   {
     return \DateTime::createFromFormat('Y-m-d', $this->item->dateIn)->format('Y-m-d');
   }
 
-  function ckeckoutDate()
+  function checkoutDate()
   {
     return \DateTime::createFromFormat('Y-m-d', $this->item->dateOut)->format('Y-m-d');
   }

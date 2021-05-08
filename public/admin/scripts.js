@@ -14,4 +14,19 @@ $(() => {
   $('.preview-file-on-upload').change(function () {
     readURL(this);
   });
+
+  $('.date-input').pickadate({
+    formatSubmit: 'yyyy-mm-dd',
+    onClose: function () {
+      $(document.activeElement).blur();
+    }
+  });
+
+  $('.model-date-input').pickadate({
+    formatSubmit: 'yyyy-mm-dd',
+    format: 'yyyy-mm-dd',
+    onClose: function () {
+      $(document.activeElement).blur();
+    }
+  });
 })

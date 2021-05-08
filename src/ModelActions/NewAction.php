@@ -10,7 +10,7 @@ class NewAction extends Base
     $resourceUrl = linkTo([$this->resourcePath, 'new']);
 ?>
     <a class="btn btn-success btn-edit-item" href=<?= $resourceUrl ?>><i class="fa fa-plus"></i>
-      New
+      Agregar
     </a>
 <?php
   }

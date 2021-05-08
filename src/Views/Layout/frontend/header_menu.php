@@ -35,8 +35,9 @@
                 <li><a href='<?= linkTo(["Rooms"]) ?>'>Habitaciones</a></li>
 
                 <?php if ($this->currentUser()) : ?>
+                  <li><a href='<?= linkTo(['Bookings']) ?>'>Bookings</a></li>
                   <?php if ($this->isAdmin()) : ?>
-                    <li><a href='<?= linkTo(['Admin', 'Rooms']) ?>'>
+                    <li><a href='<?= linkTo(['Admin', 'Bookings']) ?>'>
                         <i class="fa fa-key"> </i> Admin Panel</a></li>
                   <?php endif; ?>
                   <li><a href='<?= linkTo(['Session', 'destroy'], ['ReturnUrl' => $_SERVER['REQUEST_URI']]) ?>'><i class="fa fa-times"> </i> SALIR DE MI CUENTA</a></li>

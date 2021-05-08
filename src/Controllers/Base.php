@@ -61,6 +61,14 @@ class Base
     );
   }
 
+  public function show()
+  {
+    $this->render(
+      'show',
+      []
+    );
+  }
+
   public function dispatch($action)
   {
     return $this->{$action}();

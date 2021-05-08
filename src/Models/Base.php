@@ -15,6 +15,7 @@ class Base
 
   static protected $tableName;
   protected $attributes = [];
+  protected $dirtyAttributes = [];
   protected $initialAttributes = [];
   protected $validAttributes = [];
   protected $errors = [];
@@ -32,10 +33,16 @@ class Base
 
   function __construct($attributes = [])
   {
+    $this->dirtyAttributes = $attributes;
     $this->validAttributes = array_keys($this->emptyAttributes());
     $this->attributes = [];
     $this->setAttributes(count($attributes) == 0 ? $this->emptyAttributes() : $attributes);
     $this->initialAttributes = $this->attributes;
+  }
+
+  function attributes()
+  {
+    return $this->attributes;
   }
 
   private function emptyAttributes()
@@ -225,6 +232,10 @@ class Base
       return $this->attributes[$property];
     }
 
+    if (method_exists($this, '_' .  $property)) {
+      return $this->{'_' . $property}();
+    }
+
     if (!$relation) {
       $relation = $property;
     }
@@ -253,6 +264,8 @@ class Base
     }
   }
 
+  const SELECT_CLAUSE = 'SELECT * FROM ';
+
   static function where($conditions = [], $params = [], $order = null, $direction = 'ASC', $page = 1, $limit = 100)
   {
     $pdo = Connection::instance();
@@ -267,7 +280,7 @@ class Base
       $order = static::tableMetadata()->primaryKey();
     }
 
-    $clause = 'SELECT * from ' . static::$tableName . " $sqlConditions ORDER BY $order $direction LIMIT $limit";
+    $clause = static::SELECT_CLAUSE . static::$tableName . " $sqlConditions ORDER BY $order $direction LIMIT $limit";
 
     $stmt = $pdo->prepare($clause);
     $stmt->execute($params);

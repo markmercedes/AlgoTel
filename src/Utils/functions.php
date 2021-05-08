@@ -77,6 +77,21 @@ function children()
   return Params::get('children', '0');
 }
 
+function statusLabel($status)
+{
+  if ($status == 'pending') { ?>
+    <span class="py-0 alert alert-warning">Pendiente</span>
+  <?php } else if ($status == 'complete') { ?>
+    <span class="py-0 alert alert-success">Completada</span>
+  <?php } else if ($status == 'processing') { ?>
+    <span class="py-0 alert alert-info">En proceso</span>
+  <?php } else if ($status == 'cancelled') { ?>
+    <span class="py-0 alert alert-danger">Cancelada</span>
+  <?php } else if ($status == 'fulfilled') { ?>
+    <span class="py-0 alert alert-success">Cumplida</span>
+  <?php }
+}
+
 function roomReservationConfig($room)
 {
   $dateIn = checkinDate();
@@ -117,7 +132,7 @@ function appPath()
 
 function select_tag($name, $id, $options, $placeholder = null, $selected = null)
 {
-?>
+  ?>
   <select class="form-select" id='<?= $id ?>' name='<?= $name ?>'>
     <option><?= $placeholder ?></option>
     <?php foreach ($options as $key => $value) : ?>

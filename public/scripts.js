@@ -20,11 +20,10 @@ $(() => {
       return item.id != itemId
     });
 
-    Cookies.set('CART', JSON.stringify(items));
+    Cookies.set('CART', JSON.stringify(items), { path: '/' });
 
     refreshSmallCart();
   });
-
 
 
   $('.btn-select-room-for-reservation').click(function (e) {
@@ -36,7 +35,7 @@ $(() => {
 
     items.push(Object.assign({}, { id: Math.floor(Math.random() * 100000000) }, config));
 
-    Cookies.set('CART', JSON.stringify(items));
+    Cookies.set('CART', JSON.stringify(items), { path: '/' });
 
     $('#small-cart').get(0).scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
 

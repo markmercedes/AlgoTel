@@ -12,7 +12,7 @@ class Base
   const EDITABLE_ATTRIBUTES = [];
   const LISTABLE_ATTRIBUTES = [];
   const TOP_LIST_ACTIONS = ['new'];
-  const LISTABLE_ACTIONS = ['edit', 'destroy'];
+  const LISTABLE_ACTIONS = ['edit'];
   const EDITABLE_ACTIONS = ['save', 'cancel'];
   const CREATEABLE_ACTIONS = ['save', 'cancel'];
   const ATTRIBUTE_TYPES = [];

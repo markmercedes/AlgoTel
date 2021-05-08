@@ -10,7 +10,7 @@ class CancelAction extends Base
     $resourceUrl = linkTo([$this->resourcePath]);
 ?>
     <a class="btn btn-danger btn-cancel-item" href=<?= $resourceUrl ?>><i class="fa fa-times"></i>
-      Cancelar
+      Regresar
     </a>
 <?php
   }

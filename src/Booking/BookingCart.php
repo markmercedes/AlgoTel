@@ -9,16 +9,33 @@ class BookingCart
   private function rawItems()
   {
     try {
-      return json_decode(Arr::get($_COOKIE, 'CART', '[]'));
+      $cookie = Arr::get($_COOKIE, 'CART', '[]');
+
+      return json_decode($cookie);
     } catch (\Throwable $th) {
       return [];
     }
   }
 
+  function hasItems()
+  {
+    return count($this->items()) > 0;
+  }
+
+  function isEmpty()
+  {
+    return !$this->hasItems();
+  }
+
+  function clear()
+  {
+    setcookie("CART", "[]", time() - 3600, '/');
+  }
+
   function items()
   {
     return $this->items ??= array_map(function ($item) {
-      return new BookingItem($item, $this->rooms()[$item->room_id]);
+      return new BookingCartItem($item, $this->rooms()[$item->room_id]);
     }, $this->rawItems());
   }
 
@@ -27,6 +44,20 @@ class BookingCart
     return array_reduce($this->items(), function ($result, $item) {
       return $result + $item->total();
     }, 0);
+  }
+
+  function checkinDate()
+  {
+    return min(array_map(function ($item) {
+      return $item->checkinDate();
+    }, $this->items()));
+  }
+
+  function checkoutDate()
+  {
+    return max(array_map(function ($item) {
+      return $item->checkoutDate();
+    }, $this->items()));
   }
 
   protected $rooms;
