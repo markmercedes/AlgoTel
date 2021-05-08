@@ -5,8 +5,8 @@ namespace ResourceManagers;
 class RoomManager extends Base
 {
   const MODEL_CLASS = 'Models\\Room';
-  const RESOURCE_LABEL = 'Habitacion';
-  const RESOURCES_LABEL = 'Habitaciones';
+  const RESOURCE_LABEL = 'Habitación';
+  const RESOURCES_LABEL = 'Habitaciónes';
   const EDITABLE_ATTRIBUTES = ['name', 'description', 'room_type_id', 'quantity', 'room_capacity_id', 'max_children', 'extra_description', 'price_config', 'gallery',];
   const LISTABLE_ATTRIBUTES = ['name', 'roomCapacity.name', 'roomType.name', 'quantity', 'occupancy', 'available', 'max_children'];
   const ATTRIBUTE_TYPES = [
@@ -15,7 +15,7 @@ class RoomManager extends Base
     'roomCapacity.name' => ['type' => 'String', 'label' => 'Capacidad'],
     'roomType.name' => ['type' => 'String', 'label' => 'Tipo'],
     'description' => ['type' => 'Text', 'label' => 'Descripcion'],
-    'max_children' => ['type' => 'Integer', 'label' => 'Ninos por habitacion'],
+    'max_children' => ['type' => 'Integer', 'label' => 'Ninos por Habitación'],
     'quantity' => ['type' => 'Integer', 'label' => 'Cantidad total'],
     'occupancy' => ['type' => 'String', 'label' => 'Ocupadas'],
     'available' => ['type' => 'Integer', 'label' => 'Cantidad disponible'],

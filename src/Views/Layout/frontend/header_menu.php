@@ -32,7 +32,7 @@
           <div class="nav-menu">
             <nav class="mainmenu">
               <ul>
-                <li><a href='<?= linkTo(["Rooms"]) ?>'>Habitaciones</a></li>
+                <li><a href='<?= linkTo(["Rooms"]) ?>'>Habitaciónes</a></li>
 
                 <?php if ($this->currentUser()) : ?>
                   <li><a href='<?= linkTo(['Bookings']) ?>'>Bookings</a></li>

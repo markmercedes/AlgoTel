@@ -45,11 +45,11 @@
             <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'Bookings']) ?>">Todos los bookings</a></li>
             <li class="nav-item">
               <a class="nav-link text-primary" href="<?= linkTo(['Admin', 'Rooms']) ?>">
-                <h5 class="text-primary">Habitaciones </h5>
+                <h5 class="text-primary">Habitaciónes </h5>
               </a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'RoomTypes']) ?>">Tipos de habitaciones </a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'RoomCapacities']) ?>">Capacidades de habitaciones </a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'RoomTypes']) ?>">Tipos de Habitaciónes </a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= linkTo(['Admin', 'RoomCapacities']) ?>">Capacidades de Habitaciónes </a></li>
             <li class="nav-item">
               <a class="nav-link" href="<?= linkTo(['Admin', 'Users']) ?>">
                 <h5 class="text-primary">Usuarios </h5>
@@ -59,7 +59,7 @@
               <h5 class="text-primary nav-link">Reportes </h5>
             </li>
             <li class="nav-item"><a class="nav-link" href="#">Bookings por fecha </a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Habitaciones ocupadas </a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Habitaciónes ocupadas </a></li>
           </ul>
         </div>
       </nav>

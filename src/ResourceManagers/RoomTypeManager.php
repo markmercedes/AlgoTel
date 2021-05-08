@@ -5,8 +5,8 @@ namespace ResourceManagers;
 class RoomTypeManager extends Base
 {
   const MODEL_CLASS = 'Models\\RoomType';
-  const RESOURCE_LABEL = 'Tipo de Habitacion';
-  const RESOURCES_LABEL = 'Tipos de Habitaciones';
+  const RESOURCE_LABEL = 'Tipo de Habitación';
+  const RESOURCES_LABEL = 'Tipos de Habitaciónes';
   const EDITABLE_ATTRIBUTES = ['name', 'description'];
   const LISTABLE_ATTRIBUTES = ['name'];
   const LISTABLE_ACTIONS = ['edit', 'destroy'];

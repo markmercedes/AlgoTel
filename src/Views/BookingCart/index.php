@@ -11,7 +11,7 @@ $itemsInCart = $bookinCart->items();
       <?php if (!count($itemsInCart)) : ?>
         <div class="col-lg-6">
           <h3 class="mb-3">Tu carrito de reservaciones esta vacio!</h3>
-          <a href="/Rooms" class="btn btn-primary">Ver Habitaciones disponibles</a>
+          <a href="/Rooms" class="btn btn-primary">Ver Habitaciónes disponibles</a>
         </div>
       <?php else : ?>
         <div class="col-lg-6">

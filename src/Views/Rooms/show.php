@@ -75,7 +75,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <h3 class="my-5">Otras habitaciones</h3>
+        <h3 class="my-5">Otras Habitaciónes</h3>
         <div id="lightSlider">
           <?php foreach ($this->item->similarRooms() as $room) : ?>
             <li>

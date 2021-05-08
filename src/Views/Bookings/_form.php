@@ -19,8 +19,8 @@ use Web\Params;
       <?php select_tag('guests', 'guests', selected: Params::get('guests', '2'), options: ['0' => '0 adultos', '1' => '1 adulto', '2' => '2 adultos', '2' => '2 adultos', '3' => '3 adultos', '4' => '4 adultos', '5' => '5 adultos']) ?>
     </div>
     <div class="select-option">
-      <label for="room">Niños:</label>
-      <?php select_tag('children', 'children', selected: Params::get('children'), options: ['0' => '0 niños', '1' => '1 niño', '2' => '2 niños']) ?>
+      <label for="room">Ninos:</label>
+      <?php select_tag('children', 'children', selected: Params::get('children'), options: ['0' => '0 ninos', '1' => '1 niño', '2' => '2 ninos']) ?>
     </div>
     <div class="d-grid gap-2">
       <button class="btn btn-primary" type="submit">Revisar disponibilidad</button>
