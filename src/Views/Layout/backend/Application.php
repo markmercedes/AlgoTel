@@ -15,8 +15,8 @@
   <script src="/pickadate/translations/es_ES.js"></script>
   <link rel="stylesheet" href="/pickadate/themes/default.css" />
   <link rel="stylesheet" href="/pickadate/themes/default.date.css" />
-  <link rel="stylesheet" href="/admin/styles.css" />
-  <script src="/admin/scripts.js"></script>
+  <link rel="stylesheet" href="/admin/styles.css?v=<?= getenv('ASSETS_VERSION') ?>" />
+  <script src="/admin/scripts.js?v=<?= getenv('ASSETS_VERSION') ?>"></script>
   <meta name="theme-color" content="#7952b3">
   <title> <?= yieldContent('title') ?> </title>
 </head>

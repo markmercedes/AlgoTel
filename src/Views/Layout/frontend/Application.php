@@ -20,8 +20,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.min.css" integrity="sha512-yJHCxhu8pTR7P2UgXFrHvLMniOAL5ET1f5Cj+/dzl+JIlGTh5Cz+IeklcXzMavKvXP8vXqKMQyZjscjf3ZDfGA==" crossorigin="anonymous" />
   <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 
-  <link rel="stylesheet" href="/styles.css" />
-  <script src="/scripts.js"></script>
+  <link rel="stylesheet" href="/styles.css?v=<?= getenv('ASSETS_VERSION') ?>" />
+  <script src="/scripts.js?v=<?= getenv('ASSETS_VERSION') ?>"></script>
 </head>
 
 <body>
