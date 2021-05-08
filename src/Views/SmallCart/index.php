@@ -1,70 +1,6 @@
 <?php
 
-use Utils\Arr;
-
-class BookingCart
-{
-  private function rawItems()
-  {
-    try {
-      return json_decode(Arr::get($_COOKIE, 'CART', '[]'));
-    } catch (\Throwable $th) {
-      return [];
-    }
-  }
-  function items()
-  {
-    return $this->items ??= array_map(function ($item) {
-      return new BookingItem($item, $this->rooms()[$item->room_id]);
-    }, $this->rawItems());
-  }
-
-  protected $rooms;
-  protected $items;
-
-  function rooms()
-  {
-    return $this->rooms ??= array_reduce(Models\Room::where(), function ($result, $item) {
-      $result[$item->id] = $item;
-
-      return $result;
-    }, []);
-  }
-}
-
-class BookingItem
-{
-  private $item;
-  private $room;
-
-  function __construct($item, $room)
-  {
-    $this->item = $item;
-    $this->room = $room;
-  }
-
-  function roomName()
-  {
-    return $this->room->name;
-  }
-
-  function qty()
-  {
-    return $this->item->qty;
-  }
-
-  function id()
-  {
-    return $this->item->id;
-  }
-
-  function total()
-  {
-    return $this->item->total;
-  }
-}
-
-$itemsInCart = (new BookingCart())->items();
+$itemsInCart = (new Booking\BookingCart())->items();
 
 if (!count($itemsInCart)) {
 ?>
@@ -85,7 +21,7 @@ if (!count($itemsInCart)) {
               <div class="col-8">
                 <strong><?= $item->roomName() ?></strong>
                 <br />
-                Precio: <?= $item->total() ?>
+                Precio: <?= number_format($item->total()) ?>
               </div>
               <div class="col pt-2 text-end">
                 <a class="btn btn-outline-danger btn-sm text-end remove-item-from-cart" data-id='<?= $item->id() ?>'><i class="fa fa-trash"></i></a>
@@ -96,7 +32,7 @@ if (!count($itemsInCart)) {
       <?php endforeach ?>
     </table>
     <div class="d-grid gap-2">
-      <a href="#" class="btn btn-primary">Reservar</a>
+      <a href="/BookingCart" class="btn btn-primary">Reservar</a>
     </div>
   </div>
 </div>

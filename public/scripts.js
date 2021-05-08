@@ -34,6 +34,8 @@ $(() => {
 
     Cookies.set('CART', JSON.stringify(items));
 
+    $('#small-cart').get(0).scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+
     refreshSmallCart();
   });
 

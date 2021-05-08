@@ -89,10 +89,10 @@ function roomReservationConfig($room)
     [
       'room_id' => $room->id,
       'qty' => 1,
-      'per_night' => $room->averagePrice($in, $out),
+      'perNight' => $room->averagePrice($in, $out),
       'total' => $room->totalPrice($in, $out),
-      'date-in' => $dateIn,
-      'date-out' => $dateOut,
+      'dateIn' => $dateIn,
+      'dateOut' => $dateOut,
       'guests' => guests(),
       'children' => children()
     ]
