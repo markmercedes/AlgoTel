@@ -121,6 +121,11 @@ class Base
     }
   }
 
+  protected function withLayout()
+  {
+    return (bool) Params::get('_withLayout', '1');
+  }
+
   protected function render($viewName, $options = [], $layout = true)
   {
     $_viewName = str_replace('/', DIRECTORY_SEPARATOR, $viewName);

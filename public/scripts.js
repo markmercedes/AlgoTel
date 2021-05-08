@@ -1,5 +1,9 @@
-function refreshSmallCart() {
-  $.get('/SmallCart', function (data) {
+function smallCartSource() {
+  return $('#small-cart').data('source');
+}
+
+function refreshSmallCart(source) {
+  $.get(smallCartSource(), function (data) {
     $('#small-cart').replaceWith(data);
   });
 }

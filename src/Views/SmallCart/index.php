@@ -1,16 +1,17 @@
 <?php
 
-$itemsInCart = (new Booking\BookingCart())->items();
+$bookinCart = new Booking\BookingCart();
+$itemsInCart = $bookinCart->items();
 
 if (!count($itemsInCart)) {
 ?>
-  <div id="small-cart"></div>
+  <div id="small-cart" data-source="/SmallCart"></div>
 <?php
   return;
 }
 
 ?>
-<div id="small-cart">
+<div id="small-cart" data-source="/SmallCart">
   <div class="booking-form mb-3">
     <h3 class="text-center mb-2">Tu booking</h3>
     <table class="table">
@@ -30,6 +31,18 @@ if (!count($itemsInCart)) {
           </td>
         </tr>
       <?php endforeach ?>
+      <tr>
+        <td class="bg-light">
+          <div class="row py-3">
+            <div class="col-8">
+              <strong>Total a pagar:</strong>
+            </div>
+            <div class="col-4 text-end text-success">
+              <strong><?= number_format($bookinCart->total()) ?></strong>
+            </div>
+          </div>
+        </td>
+      </tr>
     </table>
     <div class="d-grid gap-2">
       <a href="/BookingCart" class="btn btn-primary">Reservar</a>

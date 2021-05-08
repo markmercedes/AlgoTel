@@ -1,30 +1,21 @@
 <?php
 
-$itemsInCart = (new Booking\BookingCart())->items();
+$bookinCart = new Booking\BookingCart();
+$itemsInCart = $bookinCart->items();
 
-if (!count($itemsInCart)) {
 ?>
-  <div id="small-cart">
-    <section class="hero-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6">
-            <h3 class="mb-3 text-center">Tu carrito de reservaciones esta vacio!</h3>
-            <?php $this->renderPartial('/Bookings/_form') ?>
-          </div>
-        </div>
-      </div>
-    </section>
-  <?php
-  return;
-}
 
-  ?>
-  <section class="hero-section">
-    <div class="container">
-      <div class="row">
+<section class="hero-section" id="small-cart" data-source="/BookingCart?_withLayout=0">
+  <div class="container">
+    <div class="row">
+      <?php if (!count($itemsInCart)) : ?>
         <div class="col-lg-6">
-          <div id="small-cart">
+          <h3 class="mb-3">Tu carrito de reservaciones esta vacio!</h3>
+          <a href="/Rooms" class="btn btn-primary">Ver Habitaciones disponibles</a>
+        </div>
+      <?php else : ?>
+        <div class="col-lg-6">
+          <div id="small-cart" data-source="/BookingCart/show">
             <div class="booking-form mb-3">
               <h3 class="text-center mb-2">Tu booking</h3>
               <table class="table">
@@ -52,6 +43,18 @@ if (!count($itemsInCart)) {
                     </td>
                   </tr>
                 <?php endforeach ?>
+                <tr>
+                  <td class="bg-light">
+                    <div class="row py-3">
+                      <div class="col-8">
+                        <strong>Total a pagar:</strong>
+                      </div>
+                      <div class="col-4 text-end text-success">
+                        <strong><?= number_format($bookinCart->total()) ?></strong>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
               </table>
 
               <?php if (!$this->currentUser()) : ?>
@@ -67,44 +70,63 @@ if (!count($itemsInCart)) {
                   <div class="col">
                     <div class="d-grid gap-2">
                       <a class="btn btn-success" href='<?= linkTo(['Registrations', 'new'], ['ReturnUrl' => $_SERVER['REQUEST_URI']]) ?>'><i class="fa fa-key"></i> Registro</a>
-
                     </div>
                   </div>
                 </div>
               <?php else : ?>
-                <div class="d-grid gap-2">
-                  <a href="/BookingCart" class="btn btn-primary">Completar reserva</a>
-                </div>
+                <form method="post" id="checkout-form">
+                  <div class="form-check mb-3">
+                    <input required="required" class="form-check-input" type="checkbox" value="" id="accept-term-and-conditions">
+                    <label class="form-check-label" for="accept-term-and-conditions">
+                      Estoy de acuerdo con los terminos y condiciones
+                    </label>
+                  </div>
+                  <div class="form-check mb-3">
+                    <input required="required" class="form-check-input" type="checkbox" value="" id="accept-payment-option-on-checkout">
+                    <label class="form-check-label" for="accept-payment-option-on-checkout">
+                      Pagar a la llegada
+                    </label>
+                  </div>
+                  <div class="form-check mb-3">
+                    <label for="additional-information" class="form-label">Datos adicionales</label>
+                    <textarea class="form-control" id="additional-information" rows="3"></textarea>
+                  </div>
+                  <hr />
+                  <div class="d-grid gap-2">
+                    <button form="checkout-form" class="btn btn-primary"><i class="fa fa-check"></i> Completar reserva</button>
+                  </div>
+                </form>
               <?php endif; ?>
             </div>
           </div>
         </div>
+      <?php endif; ?>
 
-        <?php if ($this->currentUser()) : ?>
-          <div class="col-lg-6">
-            <div class="booking-form mb-3">
-              <h3 class="mb-3 text-center">Detalles de cliente</h3>
-              <table class="table">
-                <tr>
-                  <th>Nombre:</th>
-                  <td><?= $this->currentUser()->first_name ?></td>
-                </tr>
-                <tr>
-                  <th>Apellido:</th>
-                  <td><?= $this->currentUser()->last_name ?></td>
-                </tr>
-                <tr>
-                  <th>Tel:</th>
-                  <td><?= $this->currentUser()->phone ?></td>
-                </tr>
-                <tr>
-                  <th>Email:</th>
-                  <td><?= $this->currentUser()->email ?></td>
-                </tr>
-              </table>
-            </div>
+      <?php if ($this->currentUser()) : ?>
+        <div class="col-lg-6">
+          <div class="booking-form mb-3">
+            <h3 class="mb-3 text-center">Detalles de cliente</h3>
+            <table class="table">
+              <tr>
+                <th>Nombre:</th>
+                <td><?= $this->currentUser()->first_name ?></td>
+              </tr>
+              <tr>
+                <th>Apellido:</th>
+                <td><?= $this->currentUser()->last_name ?></td>
+              </tr>
+              <tr>
+                <th>Tel:</th>
+                <td><?= $this->currentUser()->phone ?></td>
+              </tr>
+              <tr>
+                <th>Email:</th>
+                <td><?= $this->currentUser()->email ?></td>
+              </tr>
+            </table>
           </div>
-        <?php endif; ?>
-      </div>
+        </div>
+      <?php endif; ?>
     </div>
-  </section>
+  </div>
+</section>

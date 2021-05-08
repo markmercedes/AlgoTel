@@ -14,11 +14,19 @@ class BookingCart
       return [];
     }
   }
+
   function items()
   {
     return $this->items ??= array_map(function ($item) {
       return new BookingItem($item, $this->rooms()[$item->room_id]);
     }, $this->rawItems());
+  }
+
+  function total()
+  {
+    return array_reduce($this->items(), function ($result, $item) {
+      return $result + $item->total();
+    }, 0);
   }
 
   protected $rooms;

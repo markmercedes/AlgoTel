@@ -10,7 +10,7 @@
         </div>
         <div class="col-lg-6">
           <div class="tn-right">
-            <a href='<?= linkTo(['Session'], ['ReturnUrl' => $_SERVER['REQUEST_URI']]) ?>' class="bk-btn">Reserva ahora!</a>
+            <a href='/BookingCart' class="bk-btn">Reserva ahora!</a>
           </div>
         </div>
       </div>

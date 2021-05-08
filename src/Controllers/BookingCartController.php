@@ -8,7 +8,7 @@ class BookingCartController extends Base
   {
     $this->render(
       'index',
-      []
+      layout: $this->withLayout()
     );
   }
 }
