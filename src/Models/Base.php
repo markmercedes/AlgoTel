@@ -140,6 +140,20 @@ class Base
     }
   }
 
+  function extractIntegrityConstraintDefaultValueError($message)
+  {
+    if (str_contains($message, "cannot be null")) {
+      $matches = [];
+      preg_match("/'.+?'/", $message, $matches);
+
+      $attribute = $matches[0];
+
+      $this->addError('REQUIRED', $attribute);
+
+      return true;
+    }
+  }
+
   function addError($errorType, $attribute, $value = null)
   {
     $attribute = $this->cleanAttributeName($attribute);
@@ -161,6 +175,14 @@ class Base
     return $errors;
   }
 
+  public function destroy()
+  {
+    $sql = 'DELETE FROM ' . static::$tableName . ' WHERE id = ' . $this->id;
+
+    $stmt = Connection::instance()->prepare($sql);
+    $stmt->execute();
+  }
+
   public function save()
   {
     $changes = [];
@@ -180,6 +202,9 @@ class Base
     } catch (PDOException $e) {
       $this->extractDuplicateEntryError($e->getMessage());
       $this->extractRequiredFieldWithoutDefaultValueError($e->getMessage());
+      $this->extractIntegrityConstraintDefaultValueError($e->getMessage());
+
+      var_dump($e);
 
       return false;
     }

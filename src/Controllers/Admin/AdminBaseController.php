@@ -73,6 +73,21 @@ class AdminBaseController extends \Controllers\Base
     );
   }
 
+  public function destroy()
+  {
+    $this->validateUser();
+
+    $id = Params::post('id');
+    $model = $this->resourceManager()->find($id);
+
+    $model->destroy();
+
+    $resourceUrl = linkTo([$this->currentRoute()]);
+
+    header("Location: $resourceUrl");
+    exit();
+  }
+
   public function params()
   {
     $params = [];

@@ -1,4 +1,21 @@
+<script>
+  $(function() {
+    $('.btn-destroy-item').click(function(e) {
+      e.preventDefault();
+
+      if (confirm('seguro que desea eliminar este item?')) {
+        var form = $('#delete-resource-form');
+        form.find('[name="id"]').val($(this).data('resourceId'));
+        form.submit();
+      }
+    })
+  });
+</script>
+
 <div class="card">
+  <form id='delete-resource-form' method='post' action='<?= linkTo([$this->currentRoute(), 'destroy']) ?>'>
+    <input type='hidden' name='id' />
+  </form>
   <div class="card-header">
     <h1 class="h2"><?= yieldContent('title', $this->resourceManager()->resourcesLabel()) ?></h1>
   </div>
