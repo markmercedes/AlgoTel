@@ -2,6 +2,23 @@
   min-height: 800px;
 }
 
+.navbar-toggler {
+  background-color: #118acb;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #000;
+}
+
+.nav-link {
+  padding-right: 1.2rem !important;
+  padding-left: 1.2rem !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #118acb;
+}
+
 .home-entry {
   /* background-image: url("https://www.filepicker.io/api/file/Yjjg465DRWO2Nf8daezh/convert?w=1440&h=575&fit=crop&quality=70"); */
   background-image: url("https://www.edenroccapcana.com/wp-content/uploads/2020/06/Home1.jpg");
@@ -1963,7 +1980,7 @@ a {
   }
 }
 @media only screen and (max-width: 991px) {
-  .top-nav {
+  .top-nav .tn-left {
     display: none;
   }
   .menu-item .nav-menu {

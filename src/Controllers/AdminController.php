@@ -6,7 +6,7 @@ class AdminController extends Base
 {
   function index()
   {
-    header("Location: /Admin/Rooms");
+    header("Location: /Admin/Dashboard");
     exit();
   }
 }

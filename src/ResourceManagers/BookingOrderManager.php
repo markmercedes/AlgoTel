@@ -10,7 +10,7 @@ class BookingOrderManager extends Base
   const MODEL_CLASS = 'Models\\BookingOrder';
   const RESOURCE_LABEL = 'Booking';
   const RESOURCES_LABEL = 'Bookings';
-  const EDITABLE_ATTRIBUTES = ['status', 'checkin_date', 'checkout_date', 'notes', 'cancellation_notes', 'cancelled_at'];
+  const EDITABLE_ATTRIBUTES = ['status', 'checkin_date', 'checkout_date', 'customer_notes', 'staff_notes', 'cancellation_notes', 'cancelled_at'];
   const TOP_LIST_ACTIONS = [];
   const LISTABLE_ATTRIBUTES = ['id', 'user_id', 'status', 'order_date', 'checkin_date', 'checkout_date', 'total'];
   const ATTRIBUTE_TYPES = [
@@ -18,7 +18,8 @@ class BookingOrderManager extends Base
     'order_date' => ['type' => 'String', 'label' => 'Fecha'],
     'checkin_date' => ['type' => 'Date', 'label' => 'Check - in'],
     'checkout_date' => ['type' => 'Date', 'label' => 'Check - out'],
-    'notes' => ['type' => 'Text', 'label' => 'Notas'],
+    'customer_notes' => ['type' => 'Text', 'label' => 'Notas'],
+    'staff_notes' => ['type' => 'Text', 'label' => 'Notas de Staff'],
     'cancellation_notes' => ['type' => 'Text', 'label' => 'Motivos de cancelación'],
     'cancelled_at' => ['type' => 'Date', 'label' => 'Fecha de cancelación'],
 

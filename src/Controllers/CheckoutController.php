@@ -14,7 +14,7 @@ class CheckoutController extends Base
 
     if ($this->currentUser() && $bookingCart->hasItems()) {
       $booking = new BookingOrder();
-      $booking->notes = Params::post('notes');
+      $booking->customer_notes = Params::post('customer_notes');
       $booking->user_id = $this->currentUserID();
       $booking->buildFromBookingCart($bookingCart);
 

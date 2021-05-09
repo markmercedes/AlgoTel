@@ -23,6 +23,12 @@ class RegistrationsController extends AdminBaseController
     require App::viewsPath('Layout', 'frontend', 'Application');
   }
 
+  public function new()
+  {
+    contentFor('title', 'Registrar cuenta');
+
+    parent::new();
+  }
   public function create()
   {
     $this->validateUser();

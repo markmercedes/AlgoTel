@@ -9,9 +9,25 @@
           <br />
           <?= $this->order->orderDate() ?>
           <br />
-          <div>
+          <div class="mb-3">
             <?= statusLabel($this->order->status) ?>
           </div>
+          <?php if ($this->order->customer_notes) : ?>
+            <strong>Anotaciones de Cliente</strong>
+            <p><?= $this->order->customer_notes ?></p>
+          <?php endif; ?>
+
+          <?php if ($this->order->staff_notes) : ?>
+            <strong>Anotaciones de Staff</strong>
+            <p><?= $this->order->staff_notes ?></p>
+          <?php endif; ?>
+
+          <?php if ($this->order->isSancelled()) : ?>
+            <strong>Cancelada en: </strong>
+            <span><?= $this->order->cancelled_at ?></span>
+            <p><?= $this->order->cancellation_notes ?></p>
+          <?php endif; ?>
+          </p>
         </div>
       </div>
 

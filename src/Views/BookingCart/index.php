@@ -88,8 +88,8 @@ $itemsInCart = $bookinCart->items();
                     </label>
                   </div>
                   <div class="form-check mb-3">
-                    <label for="notes" class="form-label">Datos adicionales</label>
-                    <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                    <label for="customer_notes" class="form-label">Datos adicionales</label>
+                    <textarea class="form-control" id="customer_notes" name="customer_notes" rows="3"></textarea>
                   </div>
                   <hr />
                   <div class="d-grid gap-2">

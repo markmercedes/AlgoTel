@@ -18,41 +18,53 @@
   </div>
   <div class="menu-item">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-2">
-          <div class="logo">
-            <h2 class="logo-title">
-              <a href="/">
+      <nav class="navbar navbar-expand-lg  navbar-dark" aria-label="Fifth navbar example">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <div class="logo">
+              <h2 class="logo-title">
                 Eden Roc
-              </a>
-            </h2>
-          </div>
-        </div>
-        <div class="col-lg-10">
-          <div class="nav-menu">
-            <nav class="mainmenu">
-              <ul>
-                <li><a href='<?= linkTo(["Rooms"]) ?>'>Habitaciónes</a></li>
-
-                <?php if ($this->currentUser()) : ?>
-                  <li><a href='<?= linkTo(['Bookings']) ?>'>Bookings</a></li>
-                  <?php if ($this->isAdmin()) : ?>
-                    <li><a href='<?= linkTo(['Admin', 'Bookings']) ?>'>
-                        <i class="fa fa-key"> </i> Admin Panel</a></li>
-                  <?php endif; ?>
-                  <li><a href='<?= linkTo(['Session', 'destroy'], ['ReturnUrl' => $_SERVER['REQUEST_URI']]) ?>'><i class="fa fa-times"> </i> SALIR DE MI CUENTA</a></li>
-                <?php else : ?>
-                  <li><a href='<?= linkTo(['Session'], ['ReturnUrl' => $_SERVER['REQUEST_URI']]) ?>'><i class="fa fa-user"> </i> LOGIN</a></li>
-                  <li><a href='<?= linkTo(['Registrations', 'new'], ['ReturnUrl' => $_SERVER['REQUEST_URI']]) ?>'><i class="fa fa-key"> </i> REGISTRO</a></li>
-                <?php endif; ?>
-              </ul>
-            </nav>
-            <div class="nav-right search-switch">
-              <i class="icon_search"></i>
+              </h2>
             </div>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarsExample05">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href='<?= linkTo(["Rooms"]) ?>'>Habitaciónes</a>
+              </li>
+
+              <?php if ($this->currentUser()) : ?>
+                <li class="nav-item">
+                  <a class="nav-link" href='<?= linkTo(['Bookings']) ?>'>Bookings</a>
+                </li>
+                <?php if ($this->isAdmin()) : ?>
+                  <li class="nav-item">
+                    <a class="nav-link" href='<?= linkTo(['Admin']) ?>'>
+                      <i class="fa fa-key"> </i> Admin Panel</a>
+                  </li>
+                <?php endif; ?>
+                <li class="nav-item">
+                  <a class="nav-link" href='<?= linkTo(['Session', 'destroy'], ['ReturnUrl' => $_SERVER['REQUEST_URI']]) ?>'><i class="fa fa-times"> </i> SALIR DE MI CUENTA</a>
+                </li>
+              <?php else : ?>
+                <li class="nav-item">
+                  <a class="nav-link" href='<?= linkTo(['Session'], ['ReturnUrl' => $_SERVER['REQUEST_URI']]) ?>'><i class="fa fa-user"> </i> LOGIN</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href='<?= linkTo(['Registrations', 'new'], ['ReturnUrl' => $_SERVER['REQUEST_URI']]) ?>'><i class="fa fa-key"> </i> REGISTRO</a>
+                </li>
+              <?php endif; ?>
+            </ul>
           </div>
         </div>
-      </div>
+      </nav>
+
+
+
     </div>
   </div>
 </header>

@@ -11,6 +11,7 @@ class SessionController extends Base
 {
   function index()
   {
+    contentFor('title', 'Login');
     $this->sendHomeIfAlreadyLoggedIn();
 
     parent::index();

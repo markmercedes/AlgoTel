@@ -16,6 +16,8 @@ class CancelBookingController extends Base
     $id = Params::get('id');
     $this->order = $this->order = $this->findOrder($id);
 
+    contentFor('title', 'Cancelar Booking #' . $this->order->formattedId());
+
     parent::new();
   }
 

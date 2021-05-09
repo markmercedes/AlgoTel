@@ -22,6 +22,11 @@ class BookingOrder extends Base
     return str_pad($this->id, 10, '0', STR_PAD_LEFT);
   }
 
+  function isSancelled()
+  {
+    return $this->status == 'cancelled';
+  }
+
   function orderDate()
   {
     return \DateTime::createFromFormat('Y-m-d', $this->order_date)->format('Y-m-d');

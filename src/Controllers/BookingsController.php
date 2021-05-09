@@ -17,6 +17,8 @@ class BookingsController extends Base
       exit();
     }
 
+    contentFor('title', 'Mis Bookings');
+
     $this->orders = BookingOrder::where(["user_id = {$this->currentUserID()}"]);
 
     parent::index();
@@ -30,6 +32,8 @@ class BookingsController extends Base
     }
 
     $this->order = BookingOrder::find(Params::get('id'));
+
+    contentFor('title', 'Booking #' . $this->order->formattedId());
 
     parent::show();
   }

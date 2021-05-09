@@ -23,7 +23,7 @@ class Base
   {
     $returnUrl = Params::get('ReturnUrl', '/');
 
-    if ($returnUrl == '/Registrations/create') {
+    if (!$returnUrl || $returnUrl == '/Registrations/create' || $returnUrl == '/Session/create') {
       $returnUrl = '/';
     }
 

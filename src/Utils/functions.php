@@ -92,6 +92,21 @@ function statusLabel($status)
   <?php }
 }
 
+function plainStatusLabel($status)
+{
+  if ($status == 'pending') {
+    return 'Pendiente';
+  } else if ($status == 'complete') {
+    return 'Completada';
+  } else if ($status == 'processing') {
+    return 'proceso';
+  } else if ($status == 'cancelled') {
+    return 'Cancelada';
+  } else if ($status == 'fulfilled') {
+    return 'Cumplida';
+  }
+}
+
 function roomReservationConfig($room)
 {
   $dateIn = checkinDate();

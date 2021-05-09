@@ -28,4 +28,20 @@ class Connection
       echo "Connection failed: " . $e->getMessage();
     }
   }
+
+  static public function query($sql, $params = [])
+  {
+    $pdo = static::instance();
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
+
+    $results = [];
+
+    foreach ($stmt as $row) {
+      $results[] = $row;
+    }
+
+    return $results;
+  }
 }

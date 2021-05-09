@@ -22,6 +22,8 @@
 
   <link rel="stylesheet" href="/styles.css?v=<?= getenv('ASSETS_VERSION') ?>" />
   <script src="/scripts.js?v=<?= getenv('ASSETS_VERSION') ?>"></script>
+
+  <title> <?= yieldContent('title') ?> </title>
 </head>
 
 <body>

@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/css/bootstrap.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js" integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg==" crossorigin="anonymous"></script>
   <script src="/pickadate/picker.js"></script>
   <script src="/pickadate/picker.date.js"></script>
   <script src="/pickadate/translations/es_ES.js"></script>
@@ -33,6 +34,11 @@
         <div class="position-sticky pt-3">
           <ul class="nav flex-column">
             <li class="nav-item">
+              <a class="nav-link text-primary" href="<?= linkTo(['Admin', 'Dashboard']) ?>">
+                <h5 class="text-primary">Dashboard </h5>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link text-primary" href="<?= linkTo(['Admin', 'Bookings']) ?>">
                 <h5 class="text-primary">Bookings </h5>
               </a>
@@ -55,11 +61,6 @@
                 <h5 class="text-primary">Usuarios </h5>
               </a>
             </li>
-            <li class="nav-item">
-              <h5 class="text-primary nav-link">Reportes </h5>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="#">Bookings por fecha </a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Habitaciónes ocupadas </a></li>
           </ul>
         </div>
       </nav>

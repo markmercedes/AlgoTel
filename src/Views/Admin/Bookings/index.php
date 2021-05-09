@@ -59,7 +59,9 @@
         </tr>
       </thead>
       <tbody>
+        <?php $total = 0; ?>
         <?php foreach ($this->resourceManager()->items() as $item) : ?>
+          <?php $total += $item->total ?>
           <tr>
             <td>
               <?= $item->formattedId() ?>
@@ -91,6 +93,12 @@
           </tr>
         <?php endforeach; ?>
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan='6'><strong>Total</strong></td>
+          <td><strong><?= number_format($total, 2) ?></strong></td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </div>
