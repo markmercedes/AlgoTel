@@ -7,9 +7,21 @@ https://algotel.herokuapp.com/
 - PHP 8.0.3
 - MySQL 5.6 o superior
 
+## Estructura de base de datos
+
+Existe un archivo llamado `structure.sql` el cual contiene la estructura de la base de datos sin registros incluidos.
+
+## Cargar data inicial
+
+Existe un archivo llamado `backup.sql` el cual contiene una base de datos alimentada que puede servir para showcase del sistema.
+
 ## Crear archivo .env para ambiente local
 
+Este archivo debe ser creado en el folder principal de la aplicacion como `.env`
+
 Estas datos son cargados como variables de ambiente en PHP y deben ser configuradas como variables de ambiente en la maquina que correra el sistema una vez se este en produccion.
+
+Valores necesarios que debe contener el archivo `.env`
 
 ```.env
 DB_SERVERNAME=localhost
