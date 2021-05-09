@@ -3,10 +3,31 @@
 namespace Models;
 
 use Models\Base;
+use Utils\Arr;
 
 class User extends Base
 {
+  const ROLES = [
+    'customer' => 'Cliente',
+    'admin' => 'Admin'
+  ];
+  const STATUSSES = [
+    'active' => 'Activo',
+    'inactive' => 'Inactivo'
+  ];
+
   static protected $tableName = 'users';
+
+
+  protected function update($changes)
+  {
+
+    if (Arr::get($changes, 'password', 'EMPTY') == 'EMPTY') {
+      unset($changes['password']);
+    }
+
+    parent::update($changes);
+  }
 
   function isAdmin()
   {

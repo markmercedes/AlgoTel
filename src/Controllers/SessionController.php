@@ -20,6 +20,7 @@ class SessionController extends Base
     $this->sendHomeIfAlreadyLoggedIn();
 
     $results = User::where([
+      "status = 'active'",
       'email = ?',
       'password = ?'
     ], [Params::post('email'), sha1(Params::post('password'))], limit: 1);
