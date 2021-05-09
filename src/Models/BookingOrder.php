@@ -41,6 +41,11 @@ class BookingOrder extends Base
     return $this->orderItems ??= BookingOrderItem::where(["booking_id = {$this->id}"]);
   }
 
+  function cancelableByCustomer()
+  {
+    return $this->status == 'pending' || $this->status == 'processing';
+  }
+
   function buildFromBookingCart(BookingCart $bookingCart)
   {
     $this->total = $bookingCart->total();
